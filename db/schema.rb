@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_11_13_003545) do
+ActiveRecord::Schema[8.1].define(version: 2025_11_13_003710) do
   create_table "searches", force: :cascade do |t|
     t.string "buying_options"
     t.string "category_ids"
@@ -29,6 +29,8 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_13_003545) do
     t.boolean "search_in_description"
     t.text "sellers"
     t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_searches_on_user_id"
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -48,5 +50,6 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_13_003545) do
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
+  add_foreign_key "searches", "users"
   add_foreign_key "sessions", "users"
 end
