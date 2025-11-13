@@ -42,7 +42,7 @@
   >
     <%# filters %>
     <div class="bordered-inline-end">
-      Filters
+      <button class="link" type="button" onclick="document.getElementById('filters-summary').click()">Filters</button>
     </div>
 
     <%# link to all searches %>
@@ -50,6 +50,15 @@
       <%= link_to "All searches", searches_path %>
     </div>
 
-    <div></div>
+    <div>
+      <a href="#">Account</a>
+    </div>
   </div>
+
+  <details class="searches__filters-panel">
+    <summary id="filters-summary" style="display: none;"></summary>
+    <div class="padding">
+      <p>Test</p>
+    </div>
+  </details>
 </div>
