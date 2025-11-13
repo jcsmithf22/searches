@@ -13,8 +13,18 @@
 
   & input {
     font-size: var(--font-large-responsive);
-    height: auto;
     padding-block: var(--default-size);
+    height: 100%;
+  }
+
+  & :first-child {
+    position: relative;
+    & button {
+      inset-inline-end: 0;
+      position: absolute;
+      height: 100%;
+      aspect-ratio: 1 / 1;
+    }
   }
 }
 

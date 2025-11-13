@@ -42,7 +42,7 @@
   }
 
   &.btn-square {
-    /* height: 3rem; */
+    height: 3rem;
     padding-inline: var(--half-size);
     aspect-ratio: 1/1;
   }
