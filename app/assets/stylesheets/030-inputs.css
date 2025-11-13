@@ -105,7 +105,6 @@ select {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* color: var(--color-muted-content); */
     z-index: 20;
   }
 }

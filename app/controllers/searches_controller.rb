@@ -6,6 +6,6 @@ class SearchesController < ApplicationController
   end
 
   def new
-    @searches = Search.new
+    @search = Search.new
   end
 end
