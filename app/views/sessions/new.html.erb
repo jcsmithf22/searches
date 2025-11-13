@@ -2,7 +2,7 @@
 
 <%= tag.div(flash[:notice], style: "color:green") if flash[:notice] %>
 
-<div class="container bordered padding-double">
+<div class="padding-double bordered except-block-start">
   <%= form_with url: session_path do |form| %>
     <div class="vstack">
       <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: params[:email_address] %>
@@ -13,5 +13,7 @@
     </div>
   <% end %>
 
-  <div class="margin-block-start-double"><%= link_to "Forgot password?", new_password_path %></div>
+  <div class="margin-block-start-double">
+    <%= link_to "Forgot password?", new_password_path %>
+  </div>
 </div>

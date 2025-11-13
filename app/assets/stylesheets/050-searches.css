@@ -1,0 +1,13 @@
+/* main:has(.searches__input-container) { */
+/*   display: flex; */
+/*   flex-direction: column; */
+/*   justify-content: end; */
+/* } */
+
+.searches__input-container {
+  margin-block-start: 30vh;
+
+  & > * {
+    border-radius: 0;
+  }
+}

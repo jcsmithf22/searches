@@ -33,13 +33,13 @@
 
   <body>
     <div class="container padding-block-start-double">
-      <nav class="nav bordered except-block-end">
+      <nav class="nav bordered">
         <ul>
           <li><%= link_to "Login", new_session_path %></li>
         </ul>
       </nav>
     </div>
 
-    <main class=""><%= yield %></main>
+    <main class="container"><%= yield %></main>
   </body>
 </html>

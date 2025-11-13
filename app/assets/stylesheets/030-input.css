@@ -1,80 +1,85 @@
 :where(input:not([type="submit"])),
 :where(select),
 :where(textarea) {
-    /* Input sizing units */
-    --smallest: 16rem;
-    --smaller: 24rem;
-    --medium: 32rem;
-    --larger: 40rem;
+  /* Input sizing units */
+  --smallest: 16rem;
+  --smaller: 24rem;
+  --medium: 32rem;
+  --larger: 40rem;
 
+  border: none;
+  width: var(--input-width, 100%);
+  padding: 0;
+  padding-inline: var(--default-size);
+  margin: 0;
+  background-color: var(--color-almost-background);
+  color: var(--color-primary);
+  border-radius: var(--small-radius);
+
+  resize: none;
+
+  &:focus-visible {
+    outline: var(--color-primary) solid 1px;
+    outline-offset: 2px;
+  }
+
+  &.smallest {
+    --input-width: var(--smallest);
+  }
+
+  &.smaller {
+    --input-width: var(--smaller);
+  }
+
+  &.medium {
+    --input-width: var(--medium);
+  }
+
+  &.larger {
+    --input-width: var(--larger);
+  }
+
+  &.empty {
+    background-color: transparent;
     border: none;
-    width: var(--input-width, 100%);
-    padding: 0;
-    padding-inline: var(--default-size);
-    margin: 0;
-    background-color: var(--color-almost-background);
-    color: var(--color-primary);
-    border-radius: var(--small-radius);
-
-    resize: none;
-
-    &:focus-visible {
-        outline: var(--color-primary) solid 1px;
-        outline-offset: 2px;
-    }
-
-    &.smallest {
-        --input-width: var(--smallest);
-    }
-
-    &.smaller {
-        --input-width: var(--smaller);
-    }
-
-    &.medium {
-        --input-width: var(--medium);
-    }
-
-    &.larger {
-        --input-width: var(--larger);
-    }
+  }
 }
 
 :where(label) {
-    color: var(--color-background-content);
+  color: var(--color-background-content);
 }
 
 .errors {
-    margin: 0;
-    padding: var(--half-size);
-    padding-inline-start: var(--double-size);
-    border-radius: var(--small-radius);
-    border: 1px solid var(--color-error);
-    color: var(--color-error);
-    /*list-style-type: none;*/
+  margin: 0;
+  padding: var(--half-size);
+  padding-inline-start: var(--double-size);
+  border-radius: var(--small-radius);
+  border: 1px solid var(--color-error);
+  color: var(--color-error);
+  /*list-style-type: none;*/
 }
 
 :where(textarea) {
-    padding-block: var(--default-size);
+  padding-block: var(--default-size);
 }
 
-:where(input:not([type="submit"])), :where(select) {
-    height: 3rem;
+:where(input:not([type="submit"])),
+:where(select) {
+  height: 3rem;
 }
 
 select {
-    appearance: none;
-    background-repeat: no-repeat;
-    background-position: right 0.5rem center;
-    background-size: 1rem 1rem;
-    padding-inline-end: 2rem;
-    /* padding-right: 2.5em; */
-    
-    /* Default dark caret */
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-    
-    /* @media (prefers-color-scheme: dark) {
+  appearance: none;
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  background-size: 1rem 1rem;
+  padding-inline-end: 2rem;
+  /* padding-right: 2.5em; */
+
+  /* Default dark caret */
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+
+  /* @media (prefers-color-scheme: dark) {
       background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
     } */
-  }
-  
+}
