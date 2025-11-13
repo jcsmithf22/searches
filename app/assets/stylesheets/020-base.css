@@ -8,6 +8,7 @@ body {
   overflow: initial;
   text-size-adjust: none;
   margin: 0;
+  font-size: var(--font-medium);
 
   /* display: flex; */
   /* flex-direction: column; */

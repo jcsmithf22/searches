@@ -36,13 +36,20 @@
       </svg>
     </button>
   </div>
+
   <div
-    class="searches__input-filters hstack gap-none bordered-block-start"
+    class="searches__actions hstack gap-none bordered-block-start"
     style="height: 3rem;"
   >
     <%# filters %>
     <div class="bordered-inline-end">
-      <button class="link" type="button" onclick="document.getElementById('filters-summary').click()">Filters</button>
+      <button
+        class="link searches__toggle-filters"
+        type="button"
+        onclick="document.getElementById('filters-summary').click()"
+      >
+        Filters
+      </button>
     </div>
 
     <%# link to all searches %>
@@ -50,15 +57,68 @@
       <%= link_to "All searches", searches_path %>
     </div>
 
-    <div>
-      <a href="#">Account</a>
-    </div>
+    <div><a href="#">Account</a></div>
   </div>
 
-  <details class="searches__filters-panel">
+  <details class="searches__filters">
     <summary id="filters-summary" style="display: none;"></summary>
-    <div class="padding">
-      <p>Test</p>
+    <div class="padding searches__filter-fieldset vstack">
+      <div class="searches__filter-field">
+        <label for="category">Category</label>
+        <select id="category">
+          <option value="1">All categories</option>
+          <option value="2">Books</option>
+          <option value="3">Movies</option>
+          <option value="4">Music</option>
+          <option value="5">Games</option>
+          <option value="6">Software</option>
+          <option value="7">Other</option>
+        </select>
+      </div>
+
+      <div class="searches__filter-field">
+        <label for="buying-options">Buying options</label>
+        <select id="buying-options">
+          <option value="1">Any option</option>
+          <option value="2">Buy it now</option>
+          <option value="3">Auction</option>
+          <option value="4">Best offer</option>
+        </select>
+      </div>
+
+      <div class="searches__filter-field">
+        <label for="condition">Condition</label>
+        <select id="condition">
+          <option value="1">Unspecified</option>
+          <option value="2">New</option>
+          <option value="3">Used</option>
+        </select>
+      </div>
+
+      <div class="searches__filter-field">
+        <label for="minimum-price">Minimum price</label>
+        <input
+          id="minimum-price"
+          type=""
+          name="minimum-price"
+          placeholder="0.00"
+        >
+      </div>
+
+      <div class="searches__filter-field">
+        <label for="maximum-price">Minimum price</label>
+        <input
+          id="maximum-price"
+          type=""
+          name="maximum-price"
+          placeholder="100.00"
+        >
+      </div>
+
+      <div class="searches__filter-field">
+        <label for="test2">Search Description only</label>
+        <input type="checkbox" id="test2" name="other">
+      </div>
     </div>
   </details>
 </div>
