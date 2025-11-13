@@ -67,7 +67,8 @@
 
 :where(input:not([type="submit"])),
 :where(select) {
-  height: 3rem;
+  --input-height: 3rem;
+  height: var(--input-height);
 }
 
 select {
@@ -83,6 +84,29 @@ select {
 
   @media (prefers-color-scheme: dark) {
     background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  }
+}
+
+.currency {
+  position: relative;
+
+  & > input {
+    padding-inline-start: var(--input-height);
+  }
+
+  &::before {
+    --icon-gap: 0px;
+    content: "$";
+    position: absolute;
+    inset: var(--icon-gap);
+    height: calc(100% - var(--icon-gap) * 2);
+    max-width: 3rem;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* color: var(--color-muted-content); */
+    z-index: 20;
   }
 }
 
@@ -116,10 +140,5 @@ select {
       background-position: center;
       background-size: contain;
     }
-  }
-
-  &:focus-visible {
-    outline: var(--color-outline) solid 2px;
-    outline-offset: 2px;
   }
 }

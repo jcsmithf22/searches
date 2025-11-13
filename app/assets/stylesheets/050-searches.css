@@ -79,7 +79,11 @@
   }
 
   & > :last-child {
-    height: 2.5rem;
+    & > input {
+      --input-height: 2.5rem;
+    }
+    --input-height: 2.5rem;
+    /* height: 2.5rem; */
     width: 50%;
     flex: 0 0 auto;
   }
