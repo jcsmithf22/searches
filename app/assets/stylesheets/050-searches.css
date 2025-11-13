@@ -73,6 +73,11 @@
     flex: 0 0 auto;
   }
 
+  & > div:last-child {
+    display: flex;
+    align-items: center;
+  }
+
   & > :last-child {
     height: 2.5rem;
     width: 50%;
