@@ -1,4 +1,4 @@
-:where(input),
+:where(input:not([type="submit"])),
 :where(select),
 :where(textarea) {
     /* Input sizing units */
@@ -58,7 +58,7 @@
     padding-block: var(--default-size);
 }
 
-:where(input), :where(select) {
+:where(input:not([type="submit"])), :where(select) {
     height: 3rem;
 }
 
