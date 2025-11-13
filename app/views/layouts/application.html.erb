@@ -26,19 +26,20 @@
 
     <link rel="apple-touch-icon" href="/icon.png">
 
+    <!-- HTML in your document's head -->
+    <link rel="preconnect" href="https://rsms.me/">
+
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <div class="container padding-block-start-double">
-      <nav class="nav bordered">
-        <ul>
-          <li><%= link_to "Login", new_session_path %></li>
-        </ul>
-      </nav>
-    </div>
+    <header id="header">
+      <%= content_for(:header) || render("common/header") %>
+    </header>
 
     <main class="container"><%= yield %></main>
   </body>

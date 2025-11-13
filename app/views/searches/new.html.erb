@@ -1,0 +1,55 @@
+<% content_for :header do %>
+  <div class="container">
+    <nav class="nav">
+      <ul class="justify-end full-width gap">
+        <% unless authenticated? %>
+          <%= link_to "Login", new_session_path %>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+<% end %>
+
+<div class="searches__input-container bordered vstack gap-none">
+  <div class="hstack gap-none">
+    <input
+      autofocus
+      class="empty"
+      type="text"
+      name="search"
+      placeholder="<%= random_book_title %>"
+    >
+    <button class="btn-square">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="size-6"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+        />
+      </svg>
+    </button>
+  </div>
+  <div
+    class="searches__input-filters hstack gap-none bordered-block-start"
+    style="height: 3rem;"
+  >
+    <%# filters %>
+    <div class="bordered-inline-end">
+      Filters
+    </div>
+
+    <%# link to all searches %>
+    <div class="bordered-inline-end">
+      <%= link_to "All searches", searches_path %>
+    </div>
+
+    <div></div>
+  </div>
+</div>

@@ -19,8 +19,10 @@
   resize: none;
 
   &:focus-visible {
-    outline: var(--color-primary) solid 1px;
+    outline: var(--color-outline) solid 1px;
     outline-offset: 2px;
+    position: relative;
+    z-index: 10;
   }
 
   &.smallest {

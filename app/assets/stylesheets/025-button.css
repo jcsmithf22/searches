@@ -1,111 +1,111 @@
 :where(button),
 :where(input[type="submit"]),
 .btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    appearance: none;
-    border: none;
-    width: fit-content;
-    padding: 0;
-    padding-block: var(--half-size);
-    padding-inline: var(--default-size);
-    margin: 0;
-    background-color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  appearance: none;
+  border: none;
+  width: fit-content;
+  padding: 0;
+  padding-block: var(--half-size);
+  padding-inline: var(--default-size);
+  margin: 0;
+  background-color: var(--color-primary);
+  color: var(--color-primary-content);
+  border-radius: var(--small-radius);
+  cursor: default;
+  text-decoration: none;
+  line-height: 1.1;
+  text-align: center;
+
+  &:hover {
+    filter: brightness(0.8);
+  }
+
+  &:focus-visible {
+    outline: var(--color-outline) solid 1px;
+    outline-offset: 2px;
+    position: relative;
+    z-index: 10;
+  }
+
+  &.btn-danger {
+    background-color: var(--color-error);
     color: var(--color-primary-content);
-    border-radius: var(--small-radius);
-    cursor: default;
-    text-decoration: none;
-    line-height: 1.1;
-    text-align: center;
+  }
 
-    &:hover {
-        filter: brightness(0.8);
+  &.btn-faint {
+    background-color: var(--color-almost-background);
+    color: var(--color-primary);
+    /* border: 1px solid var(--color-primary); */
+  }
+
+  &.btn-square {
+    /* height: 3rem; */
+    padding-inline: var(--half-size);
+    aspect-ratio: 1/1;
+  }
+
+  &.btn-toggle {
+    position: relative;
+    padding-inline-start: var(--double-size);
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: var(--default-size);
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 50%;
+      background-color: var(--color-success);
     }
 
-    &:focus-visible {
-        outline: var(--color-primary) solid 1px;
-        outline-offset: 2px;
-        z-index: 100;
+    &[data-state="open"]::before {
+      background-color: var(--color-error);
     }
-
-    &.btn-danger {
-        background-color: var(--color-error);
-        color: var(--color-primary-content);
-    }
-
-    &.btn-faint {
-        background-color: var(--color-almost-background);
-        color: var(--color-primary);
-        /* border: 1px solid var(--color-primary); */
-    }
-
-    &.btn-square {
-        height: 3rem;
-        padding-inline: var(--half-size);
-        /* padding: 0 !important; */
-        aspect-ratio: 1/1;
-    }
-
-    &.btn-toggle {
-        position: relative;
-        padding-inline-start: var(--double-size);
-
-        &::before {
-            content: "";
-            position: absolute;
-            left: var(--default-size);
-            top: 50%;
-            transform: translateY(-50%);
-            width: 0.5rem;
-            height: 0.5rem;
-            border-radius: 50%;
-            background-color: var(--color-success);
-        }
-
-        &[data-state="open"]::before {
-            background-color: var(--color-error);
-        }
-    }
+  }
 }
 
 button[data-toggle="true"] {
-    svg:nth-child(1) {
-        display: block;
-    }
+  svg:nth-child(1) {
+    display: block;
+  }
 
-    svg:nth-child(2) {
-        display: none;
-    }
+  svg:nth-child(2) {
+    display: none;
+  }
 }
 
 button[data-toggle="false"] {
-    svg:nth-child(1) {
-        display: none;
-    }
+  svg:nth-child(1) {
+    display: none;
+  }
 
-    svg:nth-child(2) {
-        display: block;
-    }
+  svg:nth-child(2) {
+    display: block;
+  }
 }
 
 .btn__group {
-    display: flex;
-    flex-shrink: 0;
-    flex-direction: row;
-    gap: 1px;
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: row;
+  gap: 1px;
 
-    & > * {
-        border-radius: unset;
-    }
+  & > * {
+    border-radius: unset;
+  }
 
-    & > *:first-child {
-        border-top-left-radius: var(--small-radius);
-        border-bottom-left-radius: var(--small-radius);
-    }
+  & > *:first-child {
+    border-top-left-radius: var(--small-radius);
+    border-bottom-left-radius: var(--small-radius);
+  }
 
-    & > *:last-child {
-        border-top-right-radius: var(--small-radius);
-        border-bottom-right-radius: var(--small-radius);
-    }
+  & > *:last-child {
+    border-top-right-radius: var(--small-radius);
+    border-bottom-right-radius: var(--small-radius);
+  }
 }

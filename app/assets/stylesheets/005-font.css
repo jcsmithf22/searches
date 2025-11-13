@@ -1,0 +1,30 @@
+:root {
+  --font-small-responsive: clamp(0.8rem, 2cqi, 1rem);
+  --font-medium-responsive: clamp(1rem, 2.5cqi, 1.4rem);
+  --font-large-responsive: clamp(1.3rem, 4cqi, 1.8rem);
+  --font-x-large-responsive: clamp(1.8rem, 5cqi, 3.2rem);
+
+  --font-small: 0.8rem;
+  --font-medium: 1rem;
+  --font-large: 1.4rem;
+  --font-x-large: 1.8rem;
+  --font-xx-large: 2.4rem;
+
+  --font-family:
+    Inter, -apple-system, BlinkMacSystemFont, Aptos, Roboto, "Segoe UI",
+    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
+
+  font-family: var(--font-family);
+  font-feature-settings:
+    "liga" 1,
+    "calt" 1; /* fix for Chrome */
+}
+@supports (font-variation-settings: normal) {
+  :root {
+    --font-family:
+      InterVariable, -apple-system, BlinkMacSystemFont, Aptos, Roboto,
+      "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji",
+      "Segoe UI Emoji", "Segoe UI Symbol";
+  }
+}

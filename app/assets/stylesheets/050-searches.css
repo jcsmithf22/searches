@@ -7,7 +7,31 @@
 .searches__input-container {
   margin-block-start: 30vh;
 
-  & > * {
+  & * {
     border-radius: 0;
+  }
+
+  & input {
+    font-size: var(--font-large-responsive);
+    height: auto;
+    padding-block: var(--default-size);
+  }
+}
+
+.searches__input-filters {
+  color: var(--color-muted-content);
+  height: 3rem;
+
+  & a {
+    text-decoration: none;
+  }
+
+  & > div {
+    line-height: 1;
+    padding-inline: var(--default-size);
+    width: 33.33%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
   }
 }
