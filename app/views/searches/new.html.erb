@@ -10,121 +10,87 @@
   </div>
 <% end %>
 
-<div class="searches__input-container bordered vstack gap-none">
-  <div class="hstack gap-none">
-    <input
-      autofocus
-      class="empty"
-      type="text"
-      name="search"
-      placeholder="<%= random_book_title %>"
+<%= form_with model: @search do |form| %>
+  <div class="searches__input-container bordered vstack gap-none">
+    <div class="hstack gap-none">
+      <%= form.text_field :query, placeholder: random_book_title, class: "empty", autofocus: true %>
+      <%= button_tag type: "submit" do %>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+          />
+        </svg>
+      <% end %>
+    </div>
+
+    <div
+      class="searches__actions hstack gap-none bordered-block-start"
+      style="height: 3rem;"
     >
-    <button>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="currentColor"
-        class="size-6"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-        />
-      </svg>
-    </button>
+      <%# filters %>
+      <div class="bordered-inline-end">
+        <button
+          class="link searches__toggle-filters"
+          type="button"
+          onclick="document.getElementById('filters-summary').click()"
+        >
+          Filters
+        </button>
+      </div>
+
+      <%# link to all searches %>
+      <div class="bordered-inline-end">
+        <%= link_to "All searches", searches_path %>
+      </div>
+
+      <div><a href="#">Account</a></div>
+    </div>
+
+    <details class="searches__filters" <%= "open" unless @search.new_record? %>>
+      <summary id="filters-summary" style="display: none;"></summary>
+      <div class="padding searches__filter-fieldset vstack">
+        <div class="searches__filter-field">
+          <%= form.label :category_ids, "Category" %>
+          <%= form.select :category_ids, Search.category_options_for_select, include_blank: "All categories" %>
+        </div>
+
+        <div class="searches__filter-field">
+          <%= form.label :buying_options %>
+          <%= form.select :buying_options, Search.buying_options_for_select, include_blank: "Unspecified" %>
+        </div>
+
+        <div class="searches__filter-field">
+          <%= form.label :conditions %>
+          <%= form.select :conditions, Search.condition_options_for_select %>
+        </div>
+
+        <div class="searches__filter-field">
+          <%= form.label :minimum_cents %>
+          <div class="currency">
+            <%= form.text_field :minimum_cents, placeholder: "0.00" %>
+          </div>
+        </div>
+
+        <div class="searches__filter-field">
+          <%= form.label :maximum_cents %>
+          <div class="currency">
+            <%= form.text_field :maximum_cents, placeholder: "100.00" %>
+          </div>
+        </div>
+
+        <div class="searches__filter-field">
+          <%= form.label :search_in_description %>
+          <div><%= form.check_box :search_in_description %></div>
+        </div>
+      </div>
+    </details>
   </div>
-
-  <div
-    class="searches__actions hstack gap-none bordered-block-start"
-    style="height: 3rem;"
-  >
-    <%# filters %>
-    <div class="bordered-inline-end">
-      <button
-        class="link searches__toggle-filters"
-        type="button"
-        onclick="document.getElementById('filters-summary').click()"
-      >
-        Filters
-      </button>
-    </div>
-
-    <%# link to all searches %>
-    <div class="bordered-inline-end">
-      <%= link_to "All searches", searches_path %>
-    </div>
-
-    <div><a href="#">Account</a></div>
-  </div>
-
-  <details class="searches__filters" <%= "open" unless @search.new_record? %>>
-    <summary id="filters-summary" style="display: none;"></summary>
-    <div class="padding searches__filter-fieldset vstack">
-      <div class="searches__filter-field">
-        <label for="category">Category</label>
-        <select id="category">
-          <option value="1">All categories</option>
-          <option value="2">Books</option>
-          <option value="3">Movies</option>
-          <option value="4">Music</option>
-          <option value="5">Games</option>
-          <option value="6">Software</option>
-          <option value="7">Other</option>
-        </select>
-      </div>
-
-      <div class="searches__filter-field">
-        <label for="buying-options">Buying options</label>
-        <select id="buying-options">
-          <option value="1">Any option</option>
-          <option value="2">Buy it now</option>
-          <option value="3">Auction</option>
-          <option value="4">Best offer</option>
-        </select>
-      </div>
-
-      <div class="searches__filter-field">
-        <label for="condition">Condition</label>
-        <select id="condition">
-          <option value="1">Unspecified</option>
-          <option value="2">New</option>
-          <option value="3">Used</option>
-        </select>
-      </div>
-
-      <div class="searches__filter-field">
-        <label for="minimum-price">Minimum price</label>
-        <div class="currency">
-          <input
-            id="minimum-price"
-            type=""
-            name="minimum-price"
-            placeholder="0.00"
-          >
-        </div>
-      </div>
-
-      <div class="searches__filter-field">
-        <label for="maximum-price">Minimum price</label>
-        <div class="currency">
-          <input
-            id="maximum-price"
-            type=""
-            name="maximum-price"
-            placeholder="100.00"
-          >
-        </div>
-      </div>
-
-      <div class="searches__filter-field">
-        <label for="test2">Search Description only</label>
-        <div>
-          <input type="checkbox" id="test2" name="other">
-        </div>
-      </div>
-    </div>
-  </details>
-</div>
+<% end %>

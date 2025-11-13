@@ -21,6 +21,7 @@
     }
 
     & button {
+      z-index: 100;
       inset-inline-end: 0;
       position: absolute;
       height: 100%;
