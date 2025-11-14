@@ -24,7 +24,7 @@
   <div class="searches__input-container bordered vstack gap-none">
     <div class="hstack gap-none">
       <%= form.text_field :query, placeholder: random_book_title, class: "empty" %>
-      <%= button_tag type: "submit", formaction: search_searches_path, formmethod: "get", class: "search-btn" do %>
+      <%= button_tag type: "submit", formaction: search_searches_path, formmethod: "get", class: "search-btn btn-ghost bordered-inline" do %>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="32"
@@ -38,7 +38,7 @@
         </svg>
       <% end %>
 
-      <%= button_tag type: "submit", class: "save-btn" do %>
+      <%= button_tag type: "submit", class: "save-btn btn-ghost" do %>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="32"
@@ -118,149 +118,84 @@
 <% end %>
 
 <% if @results.present? %>
-  <p>Total: <%= @total %></p>
-  <p>Filter string: <%= @filters %></p>
-  <% @results.each do |result| %>
-    <div
-      style="margin-bottom: 30px; padding: 15px; border: 1px solid #ddd;"
-    >
-      <h3 style="margin: 0 0 10px 0; color: #0066cc;">
-        <a
-          href="<%= result["itemWebUrl"] %>"
-          style="color: #0066cc; text-decoration: none;"
-        >
-          <%= result["title"] || 'Untitled Item' %>
-        </a>
-      </h3>
-
-      <table style="width: 100%; border-collapse: collapse;">
-        <tr>
-          <td style="vertical-align: top; padding-right: 20px; width: 200px;">
-            <% if result["image"] && result["image"]["imageUrl"] %>
-              <img
-                src="<%= result["image"]["imageUrl"] %>"
-                alt="<%= result["title"] %>"
-                style="max-width: 180px; border: 1px solid #ccc;"
-              >
-            <% end %>
-          </td>
-          <td style="vertical-align: top;">
-            <p style="margin: 5px 0;"><strong>Quantity:</strong> 1</p>
-
-            <p style="margin: 5px 0;">
-              <strong>BuyItNow:</strong>
-              <%= result["price"]["value"] %>
-              <%= result["price"]["currency"] %>
-            </p>
-
-            <% if result["shippingOptions"] && result["shippingOptions"].first %>
-              <% shipping = result["shippingOptions"].first["shippingCost"] %>
-              <p style="margin: 5px 0;">
-                <strong>Shipping:</strong>
-                <% if shipping && shipping["value"] %>
-                  <%= shipping["value"] %>
-                  <%= shipping["currency"] %>
-                <% else %>
-                  Not specified
-                <% end %>
-              </p>
-            <% end %>
-
-            <p style="margin: 5px 0;">
-              <strong>eBay Site:</strong>
-              <%= result["listingMarketplaceId"] || 'US' %>
-            </p>
-
-            <p style="margin: 5px 0;">
-              <strong>Condition:</strong>
-              <%= result["condition"] %>
-            </p>
-
-            <% if result["itemLocation"] %>
-              <p style="margin: 5px 0;">
-                <strong>Location:</strong>
-                <%= result["itemLocation"]["postalCode"] %>
-                ,
-                <%= result["itemLocation"]["country"] %>
-              </p>
-            <% end %>
-
-            <p style="margin: 5px 0;">
-              <strong>Seller:</strong>
-              <%= result["seller"]["username"] %>
-              (
-              <%= result["seller"]["feedbackPercentage"] %>
-              positive feedback)
-            </p>
-
-            <% if result["itemOriginDate"] %>
-              <p style="margin: 5px 0;">
-                <strong>Started:</strong>
-                <%= result["itemOriginDate"] %>
-              </p>
-            <% end %>
-
-            <% if result["categories"] && result["categories"].any? %>
-              <p style="margin: 5px 0;">
-                <strong>Category:</strong>
-                <%= result["categories"].first["categoryName"] %>
-              </p>
-            <% end %>
-
-            <% if result["buyingOptions"] && result["buyingOptions"].any? %>
-              <p style="margin: 5px 0;">
-                <strong>Buying Options:</strong>
-                <%= result["buyingOptions"].join(", ") %>
-              </p>
-            <% end %>
-          </td>
-        </tr>
-      </table>
-
-      <hr style="margin: 15px 0; border: 1px solid #ddd;">
-
-      <p style="margin: 10px 0;"><strong>Item Specifics:</strong></p>
-
-      <p style="margin: 5px 0; font-size: 14px;">
-        <% if result["condition"] %>
-          Condition:
-          <%= result["condition"] %>
-          <br>
-        <% end %>
-        <% if result["itemId"] %>
-          Item ID:
-          <%= result["itemId"] %>
-          <br>
-        <% end %>
-        <% if result["legacyItemId"] %>
-          Legacy Item ID:
-          <%= result["legacyItemId"] %>
-          <br>
+  <div class="searches__results margin-block-end-double">
+    <div class="searches__results-header">
+      <p class="searches__results-count">
+        <%= @results.length %>
+        <%= "result".pluralize(@results.length) %>
+        <% if @total > @results.length %>
+          <span class="searches__results-total">(filtered from <%= @total %>)</span>
         <% end %>
       </p>
-
-      <p style="margin: 10px 0;">
-        <strong>Short Description:</strong>
-        <%= result["title"] %>
-      </p>
+      <% if @total >= 50 %>
+        <p class="searches__results-notice">
+          Try adding filters to narrow your search.
+        </p>
+      <% end %>
     </div>
-  <% end %>
-  <hr style="margin: 20px 0;">
-  <p style="font-size: 12px; color: #666;">
-    <strong>Total Results:</strong><%= @results.length %> results found for your search.
-    <br>
-    <strong>Total Results:</strong><%= @results.length %> results found for your search.
-    <br>
-    <strong>Total Results:</strong>
-    <%= @results.length %>
-    results found for your search.
-    <br>
-    <strong>Total Results:</strong>
-    <%= @results.length %>
-    results found for your search.
-    <br>
-    <strong>Total Before Filtering:</strong>
-    <%= @total %>
-    . Limit is 50. Try to reduce this number with additional filters.
-  </p>
+
+    <div class="searches__results-grid">
+      <% @results.each do |result| %>
+        <article class="searches__result-card">
+          <div class="searches__result-image">
+            <% if result["image"] && result["image"]["imageUrl"] %>
+              <%= link_to result["itemWebUrl"], target: "_blank", rel: "noopener" do %>
+                <%= image_tag result["image"]["imageUrl"], alt: result["title"] %>
+              <% end %>
+            <% else %>
+              <div class="searches__result-image-placeholder">No image</div>
+            <% end %>
+          </div>
+
+          <div class="searches__result-content">
+            <h3 class="searches__result-title">
+              <%= link_to result["title"] || "Untitled Item", result["itemWebUrl"], target: "_blank", rel: "noopener" %>
+            </h3>
+
+            <div class="searches__result-price">
+              <span class="searches__result-price-value">
+                <%= result["price"]["value"] %>
+                <%= result["price"]["currency"] %>
+              </span>
+              <% if result["shippingOptions"] && result["shippingOptions"].first %>
+                <% shipping = result["shippingOptions"].first["shippingCost"] %>
+                <% if shipping && shipping["value"].to_f > 0 %>
+                  <span class="searches__result-shipping">
+                    + <%= shipping["value"] %><%= shipping["currency"] %> shipping
+                  </span>
+                <% else %>
+                  <span class="searches__result-shipping-free">Free shipping</span>
+                <% end %>
+              <% end %>
+            </div>
+
+            <div class="searches__result-meta vstack gap-half">
+              <div class="searches__result-condition">
+                <%= result["condition"] %>
+              </div>
+
+              <div class="searches__result-seller">
+                <%= result["seller"]["username"] %>
+                <span class="searches__result-feedback">
+                  (<%= result["seller"]["feedbackPercentage"] %>%)
+                </span>
+              </div>
+
+              <% if result["itemLocation"] %>
+                <div class="searches__result-location">
+                  <%= result["itemLocation"]["postalCode"] %>, <%= result["itemLocation"]["country"] %>
+                </div>
+              <% end %>
+
+              <% if result["buyingOptions"] && result["buyingOptions"].any? %>
+                <div class="searches__result-buying-options">
+                  <%= Search::BUYING_OPTIONS[result["buyingOptions"].join(', ')] %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </article>
+      <% end %>
+    </div>
+  </div>
 <% end %>

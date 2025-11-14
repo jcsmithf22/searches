@@ -51,6 +51,15 @@
     /* border: 1px solid var(--color-primary); */
   }
 
+  &.btn-ghost {
+    background-color: transparent;
+    color: var(--color-background-content);
+
+    & svg {
+      fill: var(--color-background-content);
+    }
+  }
+
   &.btn-square {
     height: 3rem;
     padding-inline: var(--half-size);
