@@ -14,19 +14,31 @@
   <div class="searches__input-container bordered vstack gap-none">
     <div class="hstack gap-none">
       <%= form.text_field :query, placeholder: random_book_title, class: "empty", autofocus: true %>
-      <%= button_tag type: "submit" do %>
+      <%= button_tag type: "submit", name: "commit", value: "search", class: "search-btn" do %>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
+          width="32"
+          height="32"
+          fill="#000000"
+          viewBox="0 0 256 256"
         >
           <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-          />
+            d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"
+          ></path>
+        </svg>
+      <% end %>
+
+      <%= button_tag type: "submit", name: "commit", value: "save", class: "save-btn" do %>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="32"
+          height="32"
+          fill="#000000"
+          viewBox="0 0 256 256"
+        >
+          <path
+            d="M219.31,72,184,36.69A15.86,15.86,0,0,0,172.69,32H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V83.31A15.86,15.86,0,0,0,219.31,72ZM168,208H88V152h80Zm40,0H184V152a16,16,0,0,0-16-16H88a16,16,0,0,0-16,16v56H48V48H172.69L208,83.31ZM160,72a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h56A8,8,0,0,1,160,72Z"
+          ></path>
         </svg>
       <% end %>
     </div>
@@ -92,5 +104,21 @@
         </div>
       </div>
     </details>
+  </div>
+<% end %>
+
+<%= debug @results %>
+
+<% if @results.present? %>
+  <div class="search-results container margin-top">
+    <h2>Search Results</h2>
+    <div class="results-list">
+      <% @results.each do |result| %>
+        <div class="result-item bordered padding margin-bottom">
+          <h3><%= result[:title] %></h3>
+          <p><%= result[:price] %></p>
+        </div>
+      <% end %>
+    </div>
   </div>
 <% end %>

@@ -27,6 +27,10 @@
       height: 100%;
       aspect-ratio: 1 / 1;
     }
+
+    & .search-btn {
+      transform: translateX(calc(-100% - 1px));
+    }
   }
 }
 
