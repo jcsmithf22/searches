@@ -75,7 +75,7 @@ class EbayService
     )
 
     filter_string = build_filter_string
-    response = request.search(q: search.keywords, filter: filter_string, category_ids: search.category.presence)
+    response = request.search(q: search.query, filter: filter_string, category_ids: search.category_ids.presence, limit: 10)
     results = JSON.parse(response.body)
     # Rails.logger.info("eBay API response: #{results.inspect}")
 
