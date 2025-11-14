@@ -90,7 +90,7 @@ select {
 .currency {
   position: relative;
 
-  & > input {
+  & input {
     padding-inline-start: var(--input-height);
   }
 
@@ -139,5 +139,19 @@ select {
       background-position: center;
       background-size: contain;
     }
+  }
+}
+
+.field_with_errors {
+  width: 100%;
+
+  & input {
+    --color-outline: var(--color-error);
+    background: var(--color-error-darker);
+  }
+
+  & input::placeholder {
+    color: var(--color-error-lighter);
+    opacity: 0.5;
   }
 }
