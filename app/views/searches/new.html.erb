@@ -1,14 +1,12 @@
 <% content_for :header do %>
-  <div class="container">
-    <nav class="nav">
-      <ul class="justify-end full-width gap">
-        <% unless authenticated? %>
-          <%= link_to "Login", new_session_path %>
-        <% end %>
-      </ul>
-    </nav>
-  </div>
+  <div></div>
 <% end %>
+
+<div class="searches__logo">
+  <%= link_to root_path do %>
+    <%= render "common/logo" %>
+  <% end %>
+</div>
 
 <%= form_with model: @search, url: search_searches_path, method: :get do |form| %>
   <div class="searches__input-container bordered vstack gap-none search-only">
@@ -92,5 +90,3 @@
     </details>
   </div>
 <% end %>
-
-

@@ -52,7 +52,7 @@
   }
 
   &.btn-ghost {
-    background-color: transparent;
+    background-color: var(--color-background);
     color: var(--color-background-content);
 
     & svg {

@@ -1,16 +1,8 @@
 <% content_for :header do %>
-  <div class="container">
-    <nav class="nav">
-      <ul class="justify-end full-width gap">
-        <% unless authenticated? %>
-          <%= link_to "Login", new_session_path %>
-        <% end %>
-      </ul>
-    </nav>
-  </div>
+  <div></div>
 <% end %>
 
-<% if @search.errors.any? %>
+<% if @search.errors.any? && false %>
   <div class="errors">
     <ul>
       <% @search.errors.full_messages.each do |msg| %>
@@ -19,6 +11,12 @@
     </ul>
   </div>
 <% end %>
+
+<div class="searches__logo small">
+  <%= link_to root_path do %>
+    <%= render "common/logo" %>
+  <% end %>
+</div>
 
 <%= form_with model: @search, url: searches_path do |form| %>
   <div class="searches__input-container bordered vstack gap-none">
