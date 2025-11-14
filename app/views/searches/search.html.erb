@@ -118,15 +118,149 @@
 <% end %>
 
 <% if @results.present? %>
-  <div class="search-results container margin-top">
-    <h2>Search Results</h2>
-    <div class="results-list">
-      <% @results.each do |result| %>
-        <div class="result-item bordered padding margin-bottom">
-          <h3><%= result[:title] %></h3>
-          <p><%= result[:price] %></p>
-        </div>
-      <% end %>
+  <p>Total: <%= @total %></p>
+  <p>Filter string: <%= @filters %></p>
+  <% @results.each do |result| %>
+    <div
+      style="margin-bottom: 30px; padding: 15px; border: 1px solid #ddd;"
+    >
+      <h3 style="margin: 0 0 10px 0; color: #0066cc;">
+        <a
+          href="<%= result["itemWebUrl"] %>"
+          style="color: #0066cc; text-decoration: none;"
+        >
+          <%= result["title"] || 'Untitled Item' %>
+        </a>
+      </h3>
+
+      <table style="width: 100%; border-collapse: collapse;">
+        <tr>
+          <td style="vertical-align: top; padding-right: 20px; width: 200px;">
+            <% if result["image"] && result["image"]["imageUrl"] %>
+              <img
+                src="<%= result["image"]["imageUrl"] %>"
+                alt="<%= result["title"] %>"
+                style="max-width: 180px; border: 1px solid #ccc;"
+              >
+            <% end %>
+          </td>
+          <td style="vertical-align: top;">
+            <p style="margin: 5px 0;"><strong>Quantity:</strong> 1</p>
+
+            <p style="margin: 5px 0;">
+              <strong>BuyItNow:</strong>
+              <%= result["price"]["value"] %>
+              <%= result["price"]["currency"] %>
+            </p>
+
+            <% if result["shippingOptions"] && result["shippingOptions"].first %>
+              <% shipping = result["shippingOptions"].first["shippingCost"] %>
+              <p style="margin: 5px 0;">
+                <strong>Shipping:</strong>
+                <% if shipping && shipping["value"] %>
+                  <%= shipping["value"] %>
+                  <%= shipping["currency"] %>
+                <% else %>
+                  Not specified
+                <% end %>
+              </p>
+            <% end %>
+
+            <p style="margin: 5px 0;">
+              <strong>eBay Site:</strong>
+              <%= result["listingMarketplaceId"] || 'US' %>
+            </p>
+
+            <p style="margin: 5px 0;">
+              <strong>Condition:</strong>
+              <%= result["condition"] %>
+            </p>
+
+            <% if result["itemLocation"] %>
+              <p style="margin: 5px 0;">
+                <strong>Location:</strong>
+                <%= result["itemLocation"]["postalCode"] %>
+                ,
+                <%= result["itemLocation"]["country"] %>
+              </p>
+            <% end %>
+
+            <p style="margin: 5px 0;">
+              <strong>Seller:</strong>
+              <%= result["seller"]["username"] %>
+              (
+              <%= result["seller"]["feedbackPercentage"] %>
+              positive feedback)
+            </p>
+
+            <% if result["itemOriginDate"] %>
+              <p style="margin: 5px 0;">
+                <strong>Started:</strong>
+                <%= result["itemOriginDate"] %>
+              </p>
+            <% end %>
+
+            <% if result["categories"] && result["categories"].any? %>
+              <p style="margin: 5px 0;">
+                <strong>Category:</strong>
+                <%= result["categories"].first["categoryName"] %>
+              </p>
+            <% end %>
+
+            <% if result["buyingOptions"] && result["buyingOptions"].any? %>
+              <p style="margin: 5px 0;">
+                <strong>Buying Options:</strong>
+                <%= result["buyingOptions"].join(", ") %>
+              </p>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+
+      <hr style="margin: 15px 0; border: 1px solid #ddd;">
+
+      <p style="margin: 10px 0;"><strong>Item Specifics:</strong></p>
+
+      <p style="margin: 5px 0; font-size: 14px;">
+        <% if result["condition"] %>
+          Condition:
+          <%= result["condition"] %>
+          <br>
+        <% end %>
+        <% if result["itemId"] %>
+          Item ID:
+          <%= result["itemId"] %>
+          <br>
+        <% end %>
+        <% if result["legacyItemId"] %>
+          Legacy Item ID:
+          <%= result["legacyItemId"] %>
+          <br>
+        <% end %>
+      </p>
+
+      <p style="margin: 10px 0;">
+        <strong>Short Description:</strong>
+        <%= result["title"] %>
+      </p>
     </div>
-  </div>
+  <% end %>
+  <hr style="margin: 20px 0;">
+  <p style="font-size: 12px; color: #666;">
+    <strong>Total Results:</strong><%= @results.length %> results found for your search.
+    <br>
+    <strong>Total Results:</strong><%= @results.length %> results found for your search.
+    <br>
+    <strong>Total Results:</strong>
+    <%= @results.length %>
+    results found for your search.
+    <br>
+    <strong>Total Results:</strong>
+    <%= @results.length %>
+    results found for your search.
+    <br>
+    <strong>Total Before Filtering:</strong>
+    <%= @total %>
+    . Limit is 50. Try to reduce this number with additional filters.
+  </p>
 <% end %>

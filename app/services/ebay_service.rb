@@ -90,7 +90,7 @@ class EbayService
     # Filter results by title if title_only is true
     # { results: search.title_only ? filter_results_by_title(item_summaries) : item_summaries, total: total_results }
     puts item_summaries
-    { results: item_summaries, total: total_results }
+    { results: item_summaries, total: total_results, filters: build_filter_string }
   end
 
   private
@@ -107,6 +107,7 @@ class EbayService
     range_str = price_range_string
     filters << "price:[#{range_str}]" if range_str
     filters << "priceCurrency:USD"
+    filters << "searchInDescription:#{search.search_in_description}"
     # filters << "buyingOptions:{#{search.listing_type}}"
     # filters << "excludeSellers:{#{search.excluded_sellers_array.join("|")}"
     filters.join(",")

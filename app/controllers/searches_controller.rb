@@ -13,8 +13,9 @@ class SearchesController < ApplicationController
     @search = Current.user.searches.new(search_params.compact_blank)
     if @search.valid?
       test = EbayService.search(@search)
-      puts test
-      @results = execute_search(@search)
+      @total = test[:total]
+      @results = test[:results]
+      @filters = test[:filters]
     end
   end
 
@@ -24,14 +25,14 @@ class SearchesController < ApplicationController
       redirect_to searches_path, notice: "Search saved successfully!"
     else
       flash[:alert] = "Failed to save search"
-      render :execute, status: :unprocessable_entity
+      render :search, status: :unprocessable_entity
     end
   end
 
   private
 
   def search_params
-    params.require(:search).permit(:query, :category_ids, :buying_options, :conditions, :minimum, :maximum, :search_in_description)
+    params.expect(search: [ :query, :category_ids, :buying_options, :conditions, :minimum, :maximum, :search_in_description ])
   end
 
   def execute_search(search)
