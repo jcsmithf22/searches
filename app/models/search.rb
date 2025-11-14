@@ -1,5 +1,7 @@
 class Search < ApplicationRecord
   belongs_to :user
+  monetize :minimum_cents
+  monetize :maximum_cents
 
   CATEGORY_OPTIONS = {
     "101" => "Books",
