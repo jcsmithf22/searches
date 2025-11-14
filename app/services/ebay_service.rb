@@ -65,13 +65,13 @@ class EbayService
 
   def perform_ebay_search
     access_token = fetch_access_token
-    request = EbaySimple.browse(
+    request = Ebay.browse(
       campaign_id: @campaign_id,
-      zip: search.postal_code,
+      zip: 53075,
       access_token: access_token,
       # Consider making this configurable
       market_id: "EBAY_US",
-      category_ids: search.category.presence
+      category_ids: search.category_ids.presence
     )
 
     filter_string = build_filter_string
@@ -88,7 +88,9 @@ class EbayService
     item_summaries = results["itemSummaries"] || []
 
     # Filter results by title if title_only is true
-    { results: search.title_only ? filter_results_by_title(item_summaries) : item_summaries, total: total_results }
+    # { results: search.title_only ? filter_results_by_title(item_summaries) : item_summaries, total: total_results }
+    puts item_summaries
+    { results: item_summaries, total: total_results }
   end
 
   private
@@ -96,7 +98,7 @@ class EbayService
   def fetch_access_token
     # Cache the token for 1 hour 55 minutes (eBay tokens typically last 2 hours)
     Rails.cache.fetch("ebay_access_token", expires_in: 6900.seconds) do
-      EbaySimple.mint_access_token
+      Ebay.mint_access_token
     end
   end
 
@@ -105,14 +107,14 @@ class EbayService
     range_str = price_range_string
     filters << "price:[#{range_str}]" if range_str
     filters << "priceCurrency:USD"
-    filters << "buyingOptions:{#{search.listing_type}}"
-    filters << "excludeSellers:{#{search.excluded_sellers_array.join("|")}"
+    # filters << "buyingOptions:{#{search.listing_type}}"
+    # filters << "excludeSellers:{#{search.excluded_sellers_array.join("|")}"
     filters.join(",")
   end
 
   def price_range_string
-    min = to_dollars(search.price_min_cents)
-    max = to_dollars(search.price_max_cents)
+    min = to_dollars(search.minimum_cents)
+    max = to_dollars(search.maximum_cents)
 
     if min && max
       "#{min}..#{max}"
@@ -128,7 +130,7 @@ class EbayService
   end
 
   def filter_results_by_title(results)
-    keywords_regex = Regexp.new(search.keywords.split.map { |word| Regexp.escape(word) }.join(".*"), "i")
+    keywords_regex = Regexp.new(search.query.split.map { |word| Regexp.escape(word) }.join(".*"), "i")
     results.select { |item| item["title"] =~ keywords_regex }
   end
 end

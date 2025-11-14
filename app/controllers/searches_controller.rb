@@ -12,6 +12,8 @@ class SearchesController < ApplicationController
   def search
     @search = Current.user.searches.new(search_params.compact_blank)
     if @search.valid?
+      test = EbayService.search(@search)
+      puts test
       @results = execute_search(@search)
     end
   end
