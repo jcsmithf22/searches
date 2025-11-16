@@ -19,6 +19,8 @@
 </div>
 
 <%= form_with model: @search, url: searches_path do |form| %>
+  <div class="margin-block-end"><%= form.text_field :name, placeholder: "Name", class: "rounded-none" %></div>
+
   <div class="searches__input-container bordered vstack gap-none">
     <div class="hstack gap-none">
       <%= form.text_field :query, placeholder: random_book_title, class: "empty" %>
