@@ -12,7 +12,7 @@
   <div class="searches__input-container bordered vstack gap-none search-only">
     <div class="hstack gap-none">
       <%= form.text_field :query, placeholder: random_book_title, class: "empty", autofocus: true %>
-      <%= button_tag type: "submit" do %>
+      <%= form.button :search_or_save, type: "submit", value: "search" do %>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="32"

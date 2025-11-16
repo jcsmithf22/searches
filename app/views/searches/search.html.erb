@@ -24,7 +24,7 @@
   <div class="searches__input-container bordered vstack gap-none">
     <div class="hstack gap-none">
       <%= form.text_field :query, placeholder: random_book_title, class: "empty" %>
-      <%= button_tag type: "submit", formaction: search_searches_path, formmethod: "get", class: "search-btn btn-ghost bordered-inline" do %>
+      <%= form.button :search_or_save, type: "submit", formaction: search_searches_path, formmethod: "get", class: "search-btn btn-ghost bordered-inline", value: "search" do %>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="32"
@@ -38,7 +38,7 @@
         </svg>
       <% end %>
 
-      <%= button_tag type: "submit", class: "save-btn btn-ghost" do %>
+      <%= form.button :search_or_save, type: "submit", class: "save-btn btn-ghost" do %>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="32"

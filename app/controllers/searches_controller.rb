@@ -31,6 +31,6 @@ class SearchesController < ApplicationController
   private
 
   def search_params
-    params.expect(search: [ :query, :category_ids, :buying_options, :conditions, :minimum, :maximum, :search_in_description ])
+    params.expect(search: [ :query, :category_ids, :buying_options, :conditions, :minimum, :maximum, :search_in_description, :search_or_save ])
   end
 end
