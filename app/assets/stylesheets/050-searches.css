@@ -82,7 +82,7 @@
 }
 
 .searches__toggle-filters {
-  --duration: 50ms;
+  --duration: 75ms;
   transition: border var(--duration) ease-out, padding var(--duration) ease-out;
 }
 

@@ -4,110 +4,14 @@
   <% end %>
 </div>
 
-<div class="container medium padding-block">
-  <div class="vstack gap">
-    <div class="hstack space-between aligned-center">
-      <h1 class="margin-reset">Saved Searches</h1>
-      <%= link_to "New Search", root_path, class: "link" %>
-    </div>
+<div class="">
+  <div class="vstack gap-double">
+    <%= render "searches/forms/search", search: @search %>
 
     <% if @searches.any? %>
       <div class="vstack gap">
         <% @searches.each do |search| %>
-          <div class="searches__saved-card bordered">
-            <div class="searches__saved-card-header padding bordered-block-end">
-              <div class="hstack space-between aligned-center">
-                <div class="vstack gap-half">
-                  <h2 class="searches__saved-title margin-reset">
-                    <%= link_to search.name, search, class: "link" %>
-                  </h2>
-                  <p class="searches__saved-name margin-reset">
-                    <%= search.query %>
-                  </p>
-                </div>
-                <div class="searches__saved-actions hstack gap-half">
-                  <%= link_to search_searches_path(search: { 
-                    name: search.name,
-                    query: search.query,
-                    category_ids: search.category_ids,
-                    buying_options: search.buying_options,
-                    conditions: search.conditions,
-                    minimum: search.minimum,
-                    maximum: search.maximum,
-                    search_in_description: search.search_in_description
-                  }), class: "link" do %>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      fill="currentColor"
-                      viewBox="0 0 256 256"
-                    >
-                      <path
-                        d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"
-                      ></path>
-                    </svg>
-                  <% end %>
-                </div>
-              </div>
-            </div>
-
-            <div class="searches__saved-card-details padding">
-              <div class="searches__saved-filters vstack gap-half">
-                <% if search.category_ids.present? %>
-                  <div class="searches__saved-filter-item">
-                    <span class="searches__saved-filter-label">Category:</span>
-                    <span class="searches__saved-filter-value"><%= search.readable_category_option %></span>
-                  </div>
-                <% end %>
-
-                <% if search.buying_options.present? %>
-                  <div class="searches__saved-filter-item">
-                    <span class="searches__saved-filter-label">Buying option:</span>
-                    <span class="searches__saved-filter-value"><%= search.readable_buying_option %></span>
-                  </div>
-                <% end %>
-
-                <% if search.conditions.present? %>
-                  <div class="searches__saved-filter-item">
-                    <span class="searches__saved-filter-label">Condition:</span>
-                    <span class="searches__saved-filter-value"><%= search.readable_condition_option %></span>
-                  </div>
-                <% end %>
-
-                <% if search.minimum.present? || search.maximum.present? %>
-                  <div class="searches__saved-filter-item">
-                    <span class="searches__saved-filter-label">Price range:</span>
-                    <span class="searches__saved-filter-value">
-                      <%= search.minimum.present? ? search.minimum.format : "$0" %>
-                      -
-                      <%= search.maximum.present? ? search.maximum.format : "∞" %>
-                    </span>
-                  </div>
-                <% end %>
-
-                <% if search.search_in_description %>
-                  <div class="searches__saved-filter-item">
-                    <span class="searches__saved-filter-label">Search in description:</span>
-                    <span class="searches__saved-filter-value">Yes</span>
-                  </div>
-                <% end %>
-
-                <% if search.notes.present? %>
-                  <div class="searches__saved-filter-item">
-                    <span class="searches__saved-filter-label">Notes:</span>
-                    <span class="searches__saved-filter-value"><%= search.notes %></span>
-                  </div>
-                <% end %>
-              </div>
-
-              <div class="searches__saved-meta">
-                <p class="searches__saved-date margin-reset">
-                  Saved <%= time_tag search.created_at, search.created_at.strftime("%B %d, %Y") %>
-                </p>
-              </div>
-            </div>
-          </div>
+          <%= render search %>
         <% end %>
       </div>
     <% else %>

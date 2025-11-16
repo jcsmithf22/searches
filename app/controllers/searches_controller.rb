@@ -1,8 +1,9 @@
 class SearchesController < ApplicationController
   allow_unauthenticated_access only: %i[ new ]
-  before_action :set_search, only: %i[ show ]
+  before_action :set_search, only: %i[ edit ]
 
   def index
+    @search = Search.new
     @searches = Current.user.searches.order(created_at: :desc)
   end
 
@@ -29,7 +30,7 @@ class SearchesController < ApplicationController
     end
   end
 
-  def show
+  def edit
   end
 
   private
