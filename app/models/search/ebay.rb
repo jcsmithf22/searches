@@ -46,10 +46,22 @@ module Search::Ebay
   }.freeze
 
   CONDITION_OPTIONS = {
-    # "UNSPECIFIED" => "Unspecified",
+    # "UNSPECIFIED" => "Unspecified", # This literally looks for listings without a condition specified
     "NEW" => "New",
     "USED" => "Used"
   }.freeze
+
+  def readable_buying_option
+    BUYING_OPTIONS[buying_options]
+  end
+
+  def readable_condition_option
+    CONDITION_OPTIONS[conditions] || "Unspecified"
+  end
+
+  def readable_category_option
+    CATEGORY_OPTIONS[category_ids] || "All categories"
+  end
 
   class_methods do
     def category_options_for_select
