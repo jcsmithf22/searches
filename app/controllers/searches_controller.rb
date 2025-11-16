@@ -1,8 +1,9 @@
 class SearchesController < ApplicationController
   allow_unauthenticated_access only: %i[ new ]
+  before_action :set_search, only: %i[ show ]
 
   def index
-    @searches = Search.all
+    @searches = Current.user.searches.order(created_at: :desc)
   end
 
   def new
@@ -28,9 +29,16 @@ class SearchesController < ApplicationController
     end
   end
 
+  def show
+  end
+
   private
 
+  def set_search
+    @search = Current.user.searches.find(params[:id])
+  end
+
   def search_params
-    params.expect(search: [ :query, :category_ids, :buying_options, :conditions, :minimum, :maximum, :search_in_description, :search_or_save ])
+    params.expect(search: [ :name, :notes, :query, :category_ids, :buying_options, :conditions, :minimum, :maximum, :search_in_description, :search_or_save ])
   end
 end

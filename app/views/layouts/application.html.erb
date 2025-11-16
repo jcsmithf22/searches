@@ -42,7 +42,7 @@
 
   <body>
     <header id="header">
-      <%= content_for(:header) || render("common/header") %>
+      <%= content_for(:header) %>
     </header>
 
     <main class="container"><%= yield %></main>

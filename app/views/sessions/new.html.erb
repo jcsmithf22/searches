@@ -2,6 +2,10 @@
 
 <%= tag.div(flash[:notice], style: "color:green") if flash[:notice] %>
 
+<% content_for :header do %>
+  <%= render("common/header") %>
+<% end %>
+
 <div class="padding-double bordered except-block-start">
   <%= form_with url: session_path do |form| %>
     <div class="vstack">
