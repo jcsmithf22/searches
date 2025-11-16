@@ -64,7 +64,7 @@
     --color-background-faint: oklch(var(--lch-black) / 0.1);
     --color-primary: oklch(var(--lch-black));
     --color-primary-content: oklch(var(--lch-white));
-    --color-muted-content: oklch(var(--lch-gray-muted));
+    --color-muted-content: oklch(var(--lch-gray-darkest));
     --color-outline: var(--azure-600);
   }
 }

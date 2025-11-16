@@ -81,6 +81,11 @@
   }
 }
 
+.searches__toggle-filters {
+  --duration: 50ms;
+  transition: border var(--duration) ease-out, padding var(--duration) ease-out;
+}
+
 .searches__input-container:has(.searches__filters[open])
   .searches__toggle-filters {
   padding-inline-start: var(--half-size);
