@@ -89,7 +89,7 @@
 
         <div class="searches__filter-field">
           <%= form.label :conditions %>
-          <%= form.select :conditions, Search.condition_options_for_select %>
+          <%= form.select :conditions, Search.condition_options_for_select, include_blank: "Unspecified" %>
         </div>
 
         <div class="searches__filter-field">
@@ -152,8 +152,16 @@
 
             <div class="searches__result-price">
               <span class="searches__result-price-value">
-                <%= result["price"]["value"] %>
-                <%= result["price"]["currency"] %>
+                <% if result["price"] %>
+                  <%= result["price"]["value"] %>
+                  <%= result["price"]["currency"] %>
+                <% end %>
+                <% if result["currentBidPrice"] %>
+                  <%= result["bidCount"] %>
+                  bids,
+                  <%= result["currentBidPrice"]["value"] %>
+                  <%= result["currentBidPrice"]["currency"] %>
+                <% end %>
               </span>
               <% if result["shippingOptions"] && result["shippingOptions"].first %>
                 <% shipping = result["shippingOptions"].first["shippingCost"] %>

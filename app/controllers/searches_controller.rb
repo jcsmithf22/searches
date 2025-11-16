@@ -12,10 +12,9 @@ class SearchesController < ApplicationController
   def search
     @search = Current.user.searches.new(search_params.compact_blank)
     if @search.valid?
-      test = EbayService.search(@search)
-      @total = test[:total]
-      @results = test[:results]
-      @filters = test[:filters]
+      result = EbayService.search(@search)
+      @total = result[:total]
+      @results = result[:results]
     end
   end
 
@@ -33,14 +32,5 @@ class SearchesController < ApplicationController
 
   def search_params
     params.expect(search: [ :query, :category_ids, :buying_options, :conditions, :minimum, :maximum, :search_in_description ])
-  end
-
-  def execute_search(search)
-    # TODO: Implement actual search logic
-    # Return mock results for now
-    [
-      { title: "Result 1", price: "$10.00" },
-      { title: "Result 2", price: "$15.00" }
-    ]
   end
 end

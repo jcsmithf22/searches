@@ -1,49 +1,6 @@
 # frozen_string_literal: true
 
 class EbayService
-  # CATEGORIES is a frozen hash, meaning it cannot be modified after definition
-  # This prevents accidental modifications and improves thread safety
-  # Example usage:
-  #   EbayService::CATEGORIES[:books_and_magazines]  # Returns 267
-  #   EbayService::CATEGORIES.fetch(:art)           # Returns 550, raises KeyError if not found
-  CATEGORIES = {
-    antiques: "20081",
-    art: "550",
-    baby: "2984",
-    books_and_magazines: "267",
-    business_and_industrial: "12576",
-    cameras_and_photo: "625",
-    cell_phones_and_accessories: "15032",
-    clothing_shoes_and_accessories: "11450",
-    coins_and_paper_money: "11116",
-    collectibles: "1",
-    computers_tablets_and_networking: "58058",
-    consumer_electronics: "293",
-    crafts: "14339",
-    dolls_and_bears: "237",
-    movies_and_tv: "11232",
-    entertainment_memorabilia: "45100",
-    gift_cards_and_coupons: "172008",
-    health_and_beauty: "26395",
-    home_and_garden: "11700",
-    jewelry_and_watches: "281",
-    music: "11233",
-    musical_instruments_and_gear: "619",
-    pet_supplies: "1281",
-    pottery_and_glass: "870",
-    real_estate: "10542",
-    specialty_services: "316",
-    sporting_goods: "888",
-    sports_memorabilia_cards_and_fan_shop: "64482",
-    stamps: "260",
-    tickets_and_experiences: "1305",
-    toys_and_hobbies: "220",
-    travel: "3252",
-    video_games_and_consoles: "1249",
-    everything_else: "99",
-    ebay_motors: "6000"
-  }.freeze
-
   BUYING_OPTIONS = {
     all_listings: "FIXED_PRICE|AUCTION|BEST_OFFER|CLASSIFIED_AD",
     auction: "AUCTION",
@@ -77,7 +34,6 @@ class EbayService
     filter_string = build_filter_string
     response = request.search(q: search.query, filter: filter_string, category_ids: search.category_ids.presence, limit: 10)
     results = JSON.parse(response.body)
-    # Rails.logger.info("eBay API response: #{results.inspect}")
 
     if results["errors"]
       error = results["errors"].first
@@ -87,10 +43,7 @@ class EbayService
     total_results = results["total"] || 0
     item_summaries = results["itemSummaries"] || []
 
-    # Filter results by title if title_only is true
-    # { results: search.title_only ? filter_results_by_title(item_summaries) : item_summaries, total: total_results }
-    puts item_summaries
-    { results: item_summaries, total: total_results, filters: build_filter_string }
+    { results: item_summaries, total: total_results, filters: filter_string }
   end
 
   private
@@ -104,32 +57,31 @@ class EbayService
 
   def build_filter_string
     filters = []
-    range_str = price_range_string
-    filters << "price:[#{range_str}]" if range_str
+    filters << "price:[#{build_price_string}]"
     filters << "priceCurrency:USD"
     filters << "searchInDescription:#{search.search_in_description}"
-    # filters << "buyingOptions:{#{search.listing_type}}"
-    # filters << "excludeSellers:{#{search.excluded_sellers_array.join("|")}"
+    filters << "buyingOptions:{#{search.buying_options || "FIXED_PRICE|AUCTION|BEST_OFFER"}}"
+    filters << "filter=conditionIds:{#{search.condition_ids}"
+    filters << "conditions:{#{search.conditions}}"
+    filters << "excludeSellers:{#{search.excluded_sellers}}"
+    filters << "excludeCategoryIds:{#{search.excluded_category_ids}}"
     filters.join(",")
   end
 
-  def price_range_string
-    min = to_dollars(search.minimum_cents)
-    max = to_dollars(search.maximum_cents)
+  def build_price_string
+    min = search.minimum
+    max = search.maximum
 
-    if min && max
-      "#{min}..#{max}"
-    elsif min
-      "#{min}"
-    elsif max
-      "..#{max}"
-    end
+    return "#{min}..#{max}" if min && max
+    return "#{min}" if min
+    return "..#{max}" if max
+    nil
   end
 
-  def to_dollars(cents)
-    cents&.fdiv(100)
-  end
-
+  # Rails.logger.info("eBay API response: #{results.inspect}")
+  # Deprecated
+  # Filter results by title if title_only is true
+  # { results: search.title_only ? filter_results_by_title(item_summaries) : item_summaries, total: total_results }
   def filter_results_by_title(results)
     keywords_regex = Regexp.new(search.query.split.map { |word| Regexp.escape(word) }.join(".*"), "i")
     results.select { |item| item["title"] =~ keywords_regex }
