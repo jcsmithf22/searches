@@ -40,7 +40,7 @@
       <div><a href="#">Account</a></div>
     </div>
 
-    <details class="searches__filters" <%= "open" unless @search.new_record? %>>
+    <details class="searches__filters" <%= "open" if local_assigns[:open] %>>
       <summary id="filters-summary" style="display: none;"></summary>
       <div class="padding searches__filter-fieldset vstack">
         <div class="searches__filter-field">

@@ -23,11 +23,13 @@ class SearchesController < ApplicationController
 
   def create
     @search = Current.user.searches.new(search_params)
+    puts "TAHDAH"
+    puts @search
     respond_to do |format|
       if @search.save
         format.html { redirect_to @search, notice: "Search created successfully!" }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render "searches/execute/new", status: :unprocessable_entity }
       end
     end
   end
