@@ -15,5 +15,11 @@ Rails.application.routes.draw do
   root "searches#new"
   resources :searches do
     collection { get :search }
+    member do
+      get :execute, to: "searches/execute#existing"
+    end
+    collection do
+      get :execute, to: "searches/execute#new"
+    end
   end
 end

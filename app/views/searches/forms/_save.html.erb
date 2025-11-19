@@ -1,10 +1,23 @@
 <%= form_with model: search do |form| %>
-  <div class="margin-block-end"><%= form.text_field :name, placeholder: "Name", class: "rounded-none" %></div>
-
   <div class="searches__input-container bordered vstack gap-none">
-    <div class="hstack gap-none">
-      <%= form.text_field :query, placeholder: random_book_title, class: "empty" %>
-      <%= form.button :search_or_save, type: "submit", formaction: search_searches_path, formmethod: "get", class: "search-btn btn-ghost bordered-inline", value: "search" do %>
+    <div class="searches__form-actions bordered-block-end">
+      <%= link_to searches_path, class: "btn btn-ghost bordered-inline-end" do %>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="32"
+          height="32"
+          fill="#000000"
+          viewBox="0 0 256 256"
+        >
+          <path
+            d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z"
+          ></path>
+        </svg>
+      <% end %>
+
+      <div class="flex-spacer"></div>
+
+      <%= form.button :search_or_save, type: "submit", formaction: execute_searches_path, formmethod: "get", class: "btn-ghost bordered-inline", value: "search", data: { turbo_frame: "results" } do %>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="32"
@@ -33,67 +46,52 @@
       <% end %>
     </div>
 
-    <div
-      class="searches__actions hstack gap-none bordered-block-start"
-      style="height: 3rem;"
-    >
-      <%# filters %>
-      <div class="bordered-inline-end">
-        <button
-          class="link searches__toggle-filters"
-          type="button"
-          onclick="document.getElementById('filters-summary').click()"
-        >
-          Filters
-        </button>
-      </div>
-
-      <%# link to all searches %>
-      <div class="bordered-inline-end">
-        <%= link_to "All searches", searches_path %>
-      </div>
-
-      <div><a href="#">Account</a></div>
+    <div class="bordered-block-end">
+      <%= form.text_field :name, placeholder: "Name", class: "empty tall" %>
     </div>
 
-    <details class="searches__filters" open>
-      <summary id="filters-summary" style="display: none;"></summary>
-      <div class="padding searches__filter-fieldset vstack">
-        <div class="searches__filter-field">
-          <%= form.label :category_ids, "Category" %>
-          <%= form.select :category_ids, Search.category_options_for_select, include_blank: "All categories" %>
-        </div>
+    <div class="bordered-block-end">
+      <%= form.text_area :notes, placeholder: "Notes", class: "empty", rows: 3 %>
+    </div>
 
-        <div class="searches__filter-field">
-          <%= form.label :buying_options %>
-          <%= form.select :buying_options, Search.buying_options_for_select, include_blank: "Unspecified" %>
-        </div>
+    <div class="hstack gap-none query-field bordered-block-end">
+      <%= form.text_field :query, placeholder: random_book_title, class: "empty tall" %>
+    </div>
 
-        <div class="searches__filter-field">
-          <%= form.label :conditions %>
-          <%= form.select :conditions, Search.condition_options_for_select, include_blank: "Unspecified" %>
-        </div>
+    <div class="padding searches__filter-fieldset vstack">
+      <div class="searches__filter-field">
+        <%= form.label :category_ids, "Category" %>
+        <%= form.select :category_ids, Search.category_options_for_select, include_blank: "All categories" %>
+      </div>
 
-        <div class="searches__filter-field">
-          <%= form.label :minimum %>
-          <div class="currency">
-            <%= form.text_field :minimum, placeholder: "0.00" %>
-          </div>
-        </div>
+      <div class="searches__filter-field">
+        <%= form.label :buying_options %>
+        <%= form.select :buying_options, Search.buying_options_for_select, include_blank: "Unspecified" %>
+      </div>
 
-        <div class="searches__filter-field">
-          <%= form.label :maximum %>
-          <div class="currency">
-            <%= form.text_field :maximum, placeholder: "100.00" %>
-          </div>
-        </div>
+      <div class="searches__filter-field">
+        <%= form.label :conditions %>
+        <%= form.select :conditions, Search.condition_options_for_select, include_blank: "Unspecified" %>
+      </div>
 
-        <div class="searches__filter-field">
-          <%= form.label :search_in_description %>
-          <div><%= form.check_box :search_in_description %></div>
+      <div class="searches__filter-field">
+        <%= form.label :minimum %>
+        <div class="currency">
+          <%= form.text_field :minimum, placeholder: "0.00" %>
         </div>
       </div>
-    </details>
+
+      <div class="searches__filter-field">
+        <%= form.label :maximum %>
+        <div class="currency">
+          <%= form.text_field :maximum, placeholder: "100.00" %>
+        </div>
+      </div>
+
+      <div class="searches__filter-field">
+        <%= form.label :search_in_description %>
+        <div><%= form.check_box :search_in_description %></div>
+      </div>
+    </div>
   </div>
 <% end %>
-

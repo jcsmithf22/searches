@@ -1,6 +1,6 @@
 :where(button:not(.exclude)),
 :where(input[type="submit"]),
-.btn {
+:where(.btn) {
   display: flex;
   align-items: center;
   justify-content: center;

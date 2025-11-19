@@ -1,7 +1,7 @@
-<%= form_with model: search, url: search_searches_path, method: :get do |form| %>
+<%= form_with model: search, url: execute_searches_path, method: :get do |form| %>
   <div class="searches__input-container bordered vstack gap-none search-only">
-    <div class="hstack gap-none">
-      <%= form.text_field :query, placeholder: random_book_title, class: "empty", autofocus: true %>
+    <div class="hstack gap-none query-field">
+      <%= form.text_field :query, placeholder: random_book_title, class: "empty tall", autofocus: true %>
       <%= form.button :search_or_save, type: "submit", value: "search" do %>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -80,4 +80,3 @@
     </details>
   </div>
 <% end %>
-

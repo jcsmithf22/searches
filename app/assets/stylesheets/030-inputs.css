@@ -45,6 +45,11 @@
     background-color: transparent;
     border: none;
   }
+
+  &.tall {
+    font-size: 1.2rem;
+    height: 4rem;
+  }
 }
 
 :where(label) {

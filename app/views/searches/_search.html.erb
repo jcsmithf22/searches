@@ -10,16 +10,7 @@
         </p>
       </div>
       <div class="searches__saved-actions hstack gap-half">
-        <%= link_to search_searches_path(search: { 
-          name: search.name,
-          query: search.query,
-          category_ids: search.category_ids,
-          buying_options: search.buying_options,
-          conditions: search.conditions,
-          minimum: search.minimum,
-          maximum: search.maximum,
-          search_in_description: search.search_in_description
-        }), class: "link" do %>
+        <%= link_to execute_search_path(search), class: "link" do %>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
