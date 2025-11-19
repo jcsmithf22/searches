@@ -1,5 +1,5 @@
 class SearchesController < ApplicationController
-  allow_unauthenticated_access only: %i[ new ]
+  # allow_unauthenticated_access only: %i[ new ]
   before_action :set_search, only: %i[ edit update ]
 
   def index
@@ -8,28 +8,17 @@ class SearchesController < ApplicationController
   end
 
   def new
-    @search = Search.new
-  end
-
-  def search
-    @search = Current.user.searches.new(search_params.compact_blank)
-
-    if @search.valid?
-      result = EbayService.search(@search)
-      @total = result[:total]
-      @results = result[:results]
-    end
+    # @search = Search.new
+    @search = Current.user.searches.new(optional_search_params.compact_blank)
   end
 
   def create
     @search = Current.user.searches.new(search_params)
-    puts "TAHDAH"
-    puts @search
     respond_to do |format|
       if @search.save
         format.html { redirect_to @search, notice: "Search created successfully!" }
       else
-        format.html { render "searches/execute/new", status: :unprocessable_entity }
+        format.html { render "searches/execute/show", status: :unprocessable_entity }
       end
     end
   end
@@ -55,5 +44,9 @@ class SearchesController < ApplicationController
 
   def search_params
     params.expect(search: [ :name, :notes, :query, :category_ids, :buying_options, :conditions, :minimum, :maximum, :search_in_description, :search_or_save ])
+  end
+
+  def optional_search_params
+    params.fetch(:search, {}).permit(:name, :notes, :query, :category_ids, :buying_options, :conditions, :minimum, :maximum, :search_in_description, :search_or_save)
   end
 end

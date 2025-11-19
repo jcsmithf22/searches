@@ -1,5 +1,9 @@
 class Searches::ExecuteController < ApplicationController
   def new
+    @search = Search.new
+  end
+
+  def show
     @search = Current.user.searches.new(search_params.compact_blank)
 
     if @search.valid?

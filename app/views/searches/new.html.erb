@@ -1,7 +1,9 @@
-<div class="searches__logo">
+<div class="searches__logo small">
   <%= link_to root_path do %>
     <%= render "common/logo" %>
   <% end %>
 </div>
 
-<%= render "searches/forms/search", search: @search %>
+<%= render "searches/forms/save", search: @search %>
+
+<%= turbo_frame_tag "results" %>

@@ -12,14 +12,12 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Defines the root path route ("/")
-  root "searches#new"
+  root "searches/execute#new"
   resources :searches do
-    collection { get :search }
     member do
       get :execute, to: "searches/execute#existing"
     end
-    collection do
-      get :execute, to: "searches/execute#new"
-    end
   end
+
+  resource :execute, controller: "searches/execute"
 end
