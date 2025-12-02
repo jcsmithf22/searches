@@ -6,7 +6,7 @@
 
 <div class="">
   <div class="vstack gap-double">
-    <%= render "searches/forms/search", search: @search %>
+    <%= render "searches/forms/search", search: Search.new %>
 
     <% if @searches.any? %>
       <div class="vstack gap">
@@ -20,6 +20,7 @@
           <p class="searches__empty-message">
             You haven't saved any searches yet.
           </p>
+
           <%= link_to "Create your first search", root_path, class: "link" %>
         </div>
       </div>
