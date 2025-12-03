@@ -1,4 +1,4 @@
-<%= form_with model: search do |form| %>
+<%= form_with model: search, id: dom_id(search, :form), data: { controller: "auto-save", action: "change->auto-save#change" } do |form| %>
   <div class="searches__input-container bordered vstack gap-none">
     <div class="searches__form-actions bordered-block-end">
       <%= link_to searches_path, class: "btn btn-ghost bordered-inline-end" do %>

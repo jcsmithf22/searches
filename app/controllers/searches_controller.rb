@@ -7,7 +7,6 @@ class SearchesController < ApplicationController
   end
 
   def new
-    # @search = Current.user.searches.new(optional_search_params.compact_blank)
     @search = Current.user.searches.new
   end
 
@@ -37,7 +36,7 @@ class SearchesController < ApplicationController
   end
 
   def search_params
-    params.expect(search: [ :name, :notes, :query, :category_ids, :buying_options, :conditions, :minimum, :maximum, :search_in_description ])
+    params.expect(search: [ :name, :notes, :query, :category_ids, :buying_options, :conditions, :minimum, :maximum, :search_in_description, :status ])
   end
 
   def optional_search_params

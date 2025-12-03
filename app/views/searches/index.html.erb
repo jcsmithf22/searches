@@ -4,7 +4,7 @@
   <% end %>
 </div>
 
-<%= button_to "New search", searches_path(@search), method: :post, class: "", data: { controller: "hotkey", action: "keydown.c@document->hotkey#click" } %>
+<%= link_to "New search", new_search_path(@search), data: { controller: "hotkey", action: "keydown.c@document->hotkey#click" } %>
 
 <div class="">
   <div class="vstack gap-double">
