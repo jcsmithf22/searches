@@ -3,7 +3,7 @@ class SearchesController < ApplicationController
   before_action :set_search, only: %i[ show edit update ]
 
   def index
-    @searches = Current.user.searches.published.order(created_at: :desc)
+    @searches = Current.user.searches.order(created_at: :desc)
   end
 
   def new
@@ -14,8 +14,12 @@ class SearchesController < ApplicationController
   end
 
   def create
-    @search = Current.user.searches.find_or_create_by!(user: Current.user, status: "drafted")
-    redirect_to edit_search_path(@search)
+    @search = Current.user.searches.new(search_params)
+    if @search.save
+      redirect_to searches_path
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def edit

@@ -2,6 +2,7 @@
 :where(input[type="submit"]),
 :where(.btn) {
   display: flex;
+  gap: var(--half-size);
   align-items: center;
   justify-content: center;
   appearance: none;
