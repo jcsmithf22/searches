@@ -7,6 +7,6 @@ module SearchScoped
 
   private
     def set_search
-      @search = Current.user.searches.find(params[:id])
+      @search = Current.user.searches.find(params[:search_id])
     end
 end

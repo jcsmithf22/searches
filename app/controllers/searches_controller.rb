@@ -1,9 +1,9 @@
 class SearchesController < ApplicationController
   # allow_unauthenticated_access only: %i[ new ]
-  before_action :set_search, only: %i[ edit update ]
+  before_action :set_search, only: %i[ show edit update ]
 
   def index
-    @searches = Current.user.searches.order(created_at: :desc)
+    @searches = Current.user.searches.published.order(created_at: :desc)
   end
 
   def new
@@ -11,13 +11,12 @@ class SearchesController < ApplicationController
     @search = Current.user.searches.new
   end
 
+  def show
+  end
+
   def create
-    @search = Current.user.searches.new(search_params)
-    if @search.save
-      redirect_to @search, notice: "Search created successfully!"
-    else
-      render "searches/execute/show", status: :unprocessable_entity
-    end
+    @search = Current.user.searches.find_or_create_by!(user: Current.user, status: "drafted")
+    redirect_to edit_search_path(@search)
   end
 
   def edit
@@ -38,7 +37,7 @@ class SearchesController < ApplicationController
   end
 
   def search_params
-    params.expect(search: [ :name, :notes, :query, :category_ids, :buying_options, :conditions, :minimum, :maximum, :search_in_description, :search_or_save ])
+    params.expect(search: [ :name, :notes, :query, :category_ids, :buying_options, :conditions, :minimum, :maximum, :search_in_description ])
   end
 
   def optional_search_params

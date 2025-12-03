@@ -1,7 +1,10 @@
 class Search < ApplicationRecord
-  include Ebay
+  include Ebay, Statuses
 
   belongs_to :user
+
+  # before_save :set_default_title, if: :published?
+
   monetize :minimum_cents, allow_nil: true, numericality: {
     greater_than_or_equal_to: 0
   }
@@ -9,8 +12,11 @@ class Search < ApplicationRecord
     greater_than_or_equal_to: 0
   }
 
-  attr_accessor :search_or_save
+  validates :query, presence: true, if: :published?
+  validates :name, presence: true, if: :published?
 
-  validates :query, presence: true
-  validates :name, presence: true, unless: -> { search_or_save == "search" }
+  private
+    def set_default_title
+      self.name = "Untitled" if name.blank?
+    end
 end

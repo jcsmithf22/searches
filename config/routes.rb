@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "searches/execute#new"
   resources :searches do
+    scope module: :searches do
+      resource :publish, only: :create
+    end
     member do
       get :execute, to: "searches/execute#existing"
     end
