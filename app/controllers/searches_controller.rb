@@ -1,5 +1,4 @@
 class SearchesController < ApplicationController
-  # allow_unauthenticated_access only: %i[ new ]
   before_action :set_search, only: %i[ show edit update ]
 
   def index
@@ -27,7 +26,7 @@ class SearchesController < ApplicationController
 
   def update
     if @search.update(search_params)
-      redirect_to searches_path, notice: "Search updated successfully!"
+      redirect_to searches_path
     else
       render :edit, status: :unprocessable_entity
     end
@@ -40,10 +39,6 @@ class SearchesController < ApplicationController
   end
 
   def search_params
-    params.expect(search: [ :name, :notes, :query, :category_ids, :buying_options, :conditions, :minimum, :maximum, :search_in_description, :status ])
-  end
-
-  def optional_search_params
-    params.fetch(:search, {}).permit(:name, :notes, :query, :category_ids, :buying_options, :conditions, :minimum, :maximum, :search_in_description, :search_or_save)
+    params.expect(search: [ :name, :notes, :query, :category_ids, :buying_options, :conditions, :minimum, :maximum, :search_in_description ])
   end
 end

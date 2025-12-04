@@ -1,4 +1,4 @@
-<%= form_with model: search, id: dom_id(search, :form), data: { controller: "", action: "change->auto-save#change" } do |form| %>
+<%= form_with model: search, id: dom_id(search, :form) do |form| %>
   <div class="searches__input-container bordered vstack gap-none">
     <div class="bordered-block-end">
       <%= form.text_field :name, placeholder: "Name", class: "empty tall" %>
@@ -70,19 +70,11 @@
       </svg>
     <% end %>
 
-    <%= form.button :status, type: "submit", class: "btn-faint bordered-inline full-width", value: "drafted" do %>
-      <% if search.status_in_database.inquiry.published? %>
-        Unpublish
+    <%= form.button type: "submit", class: "btn-faint bordered-inline-start full-width" do %>
+      <% if search.persisted? %>
+        Update
       <% else %>
-        Save
-      <% end %>
-    <% end %>
-
-    <%= form.button :status, type: "submit", class: "btn-primary full-width", value: "published" do %>
-      <% if search.status_in_database.inquiry.published? %>
-        Save
-      <% else %>
-        Publish
+        Create
       <% end %>
     <% end %>
   </div>

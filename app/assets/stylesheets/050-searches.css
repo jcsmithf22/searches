@@ -91,6 +91,20 @@
   }
 }
 
+.searches__toolbar {
+  display: flex;
+
+  & .btn, button {
+    height: 4rem;
+    border-radius: 0;
+  }
+
+  & .square {
+    aspect-ratio: 1 / 1;
+    height: 4rem;
+  }
+}
+
 .searches__toggle-filters {
   --duration: 75ms;
   transition:
@@ -131,7 +145,6 @@
       --input-height: 2.5rem;
     }
     --input-height: 2.5rem;
-    /* height: 2.5rem; */
     width: 50%;
     flex: 0 0 auto;
   }
