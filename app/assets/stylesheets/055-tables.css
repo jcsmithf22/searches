@@ -1,0 +1,15 @@
+/* description list */
+:where(dl) {
+  display: flex;
+  margin: 0;
+
+  & :where(dt) {
+    width: 6rem;
+    color: var(--color-muted-content);
+    margin: 0;
+  }
+
+  & :where(dd) {
+    margin: 0;
+  }
+}

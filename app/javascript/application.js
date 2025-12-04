@@ -8,7 +8,6 @@ const progressBarDelay = 500;
 let progressBarTimeout;
 
 document.addEventListener("turbo:before-fetch-request", (event) => {
-  // if (event.target.nodeName === "TURBO-FRAME") {
   if ("Turbo-Frame" in event.detail.fetchOptions.headers) {
     Turbo.session.adapter.progressBar.setValue(0);
     progressBarTimeout = window.setTimeout(

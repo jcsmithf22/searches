@@ -1,5 +1,5 @@
 <%= form_with model: search, id: dom_id(search, :form) do |form| %>
-  <div class="searches__input-container bordered vstack gap-none">
+  <div class="search__container searches__input-container bordered vstack gap-none">
     <div class="bordered-block-end">
       <%= form.text_field :name, placeholder: "Name", class: "empty tall" %>
     </div>
@@ -55,8 +55,8 @@
     </div>
   </div>
 
-  <div class="searches__form-actions bordered margin-block-start-double">
-    <%= link_to searches_path, class: "btn btn-ghost bordered-inline-end square" do %>
+  <div class="searches__toolbar bordered margin-block-start-double">
+    <%= link_to search.persisted? ? search_path(search) : searches_path, class: "btn btn-ghost bordered-inline-end square" do %>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="32"

@@ -1,8 +1,8 @@
 class Searches::PublishesController < ApplicationController
   include SearchScoped
 
-  def create
-    @search.publish
-    redirect_to searches_path
+  def update
+    @search.update!(status: params[:status])
+    redirect_to @search
   end
 end

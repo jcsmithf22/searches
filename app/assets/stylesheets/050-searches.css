@@ -27,8 +27,11 @@
   }
 }
 
+.search__container {
+  view-transition-name: search-container;
+}
+
 .searches__input-container {
-  view-transition-name: search-input;
 
   &.search-only {
     & > .query-field input {
@@ -92,6 +95,8 @@
 }
 
 .searches__toolbar {
+  view-transition-name: searches-toolbar;
+
   display: flex;
 
   & .btn, button {

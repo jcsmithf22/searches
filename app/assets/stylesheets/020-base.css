@@ -36,3 +36,36 @@ body {
 :where(p) {
   margin: 0;
 }
+
+.gradient-plus-bg {
+  --plus-size: 12px;
+  --plus-thickness: 1px;
+
+  background-color: var(--color-background);
+  opacity: 0.8;
+  background:
+    radial-gradient(
+      circle,
+      transparent 20%,
+      var(--color-background) 20%,
+      var(--color-background) 80%,
+      transparent 80%,
+      transparent
+    ),
+    radial-gradient(
+        circle,
+        transparent 20%,
+        var(--color-background) 20%,
+        var(--color-background) 80%,
+        transparent 80%,
+        transparent
+      )
+      var(--plus-size) var(--plus-size),
+    linear-gradient(var(--color-muted-content) var(--plus-thickness), transparent var(--plus-thickness)) 0 calc(var(--plus-thickness) / -2),
+    linear-gradient(90deg, var(--color-muted-content) var(--plus-thickness), var(--color-background) var(--plus-thickness)) calc(var(--plus-thickness) / -2) 0;
+  background-size:
+    calc(var(--plus-size) * 2) calc(var(--plus-size) * 2),
+    calc(var(--plus-size) * 2) calc(var(--plus-size) * 2),
+    var(--plus-size) var(--plus-size),
+    var(--plus-size) var(--plus-size);
+}

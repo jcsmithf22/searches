@@ -4,11 +4,16 @@
   <% end %>
 </div>
 
-<div class="bordered vstack gap-none">
-  <div class="padding bordered-block-end">
-    <p><%= @search.name %></p>
+<div class="search__container bordered vstack gap-none">
+  <div class="padding bordered-block-end gradient-plus-bg">
+    <h1><span style="view-transition-name: search-<%= @search.id %>"><%= @search.name %></span></h1>
+  </div>
 
-    <p><%= @search.query %></p>
+  <div class="padding bordered-block-end">
+    <dl>
+      <dt>Query</dt>
+      <dd><%= @search.query %></dd>
+    </dl>
   </div>
 
   <div class="padding">
@@ -36,7 +41,8 @@
 
   <%= link_to "Edit", edit_search_path(@search), class: "btn btn-faint bordered-inline full-width" %>
 
-  <%= button_to search_publish_path(@search), method: :post, form: { class: "full-width" }, class: "btn-primary bordered-inline-start full-width" do %>
+  <%= button_to search_publish_path(@search), method: :patch, form: { class: "full-width" }, class: "btn-primary bordered-inline-start full-width",
+        name: "status", value: @search.published? ? "drafted" : "published" do %>
     <% if @search.published? %>
       Unpublish
     <% else %>
