@@ -1,0 +1,10 @@
+<div id="<%= dom_id(search, :badges) %>" class="padding hstack gap-half">
+  <div class="badge <%= search.published? && "primary" %>">
+    <%= search.status %>
+  </div>
+  <% if search.search_in_description %>
+    <div class="badge">
+      Search in description
+    </div>
+  <% end %>
+</div>

@@ -1,19 +1,4 @@
 module SearchesHelper
-  def formatted_price_range(search)
-    min = search.minimum
-    max = search.maximum
-
-    if min.present? && max.present?
-      "#{min.format} to #{max.format}"
-    elsif max.present?
-      "up to #{max.format}"
-    elsif min.present?
-      "#{min.format} and up"
-    else
-      "Any price"
-    end
-  end
-
   def random_book_title
     [
       "To Kill a Mockingbird",

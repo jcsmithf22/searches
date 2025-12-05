@@ -1,0 +1,3 @@
+<%= turbo_stream.replace dom_id(@search, :badges), partial: "searches/badges", method: :morph, locals: { search: @search } %>
+
+<%= turbo_stream.replace dom_id(@search, :toolbar), partial: "searches/toolbar", method: :morph, locals: { search: @search } %>

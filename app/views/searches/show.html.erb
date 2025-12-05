@@ -96,40 +96,11 @@
         </svg>
         Price range
       </dt>
-      <dd><%= formatted_price_range @search %></dd>
+      <dd><%= @search.formatted_price_range %></dd>
     </dl>
   </div>
 
-  <div class="padding">
-    <div class="hstack gap-half aligned-center">
-      <span class="badge <%= @search.published? && "primary" %>"><%= @search.status %></span>
-    </div>
-  </div>
+  <%= render "badges", search: @search %>
 </div>
 
-<div class="searches__toolbar bordered margin-block-start-double">
-  <%= link_to searches_path, class: "btn btn-ghost bordered-inline-end square" do %>
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="32"
-      height="32"
-      fill="#000000"
-      viewBox="0 0 256 256"
-    >
-      <path
-        d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z"
-      ></path>
-    </svg>
-  <% end %>
-
-  <%= link_to "Edit", edit_search_path(@search), class: "btn btn-faint bordered-inline full-width" %>
-
-  <%= button_to search_publish_path(@search), method: :patch, form: { class: "full-width" }, class: "btn-primary bordered-inline-start full-width",
-        name: "status", value: @search.published? ? "drafted" : "published" do %>
-    <% if @search.published? %>
-      Unpublish
-    <% else %>
-      Publish
-    <% end %>
-  <% end %>
-</div>
+<%= render "toolbar", search: @search %>

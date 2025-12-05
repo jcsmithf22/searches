@@ -3,6 +3,6 @@ class Searches::PublishesController < ApplicationController
 
   def update
     @search.update!(status: params[:status])
-    redirect_to @search
+    # redirect_to @search
   end
 end
