@@ -28,7 +28,16 @@
 }
 
 .search__container {
-  view-transition-name: search-container;
+  background-color: var(--color-background);
+  /* view-transition-name: search-container; */
+}
+
+.search__identifier {
+  view-transition-class: search-identifier;
+}
+
+::view-transition-group(.search-identifier) {
+  z-index: 2;
 }
 
 .searches__input-container {

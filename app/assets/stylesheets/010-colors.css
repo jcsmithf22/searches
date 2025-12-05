@@ -6,6 +6,7 @@
   --lch-gray-darker: 75% 0.005 96;
   --lch-gray-muted: 50% 0.005 96;
   --lch-gray-darkest: 25% 0.005 96;
+  --lch-almost-black: 20% 0.005 96;
 
   --red-100: oklch(0.97 0.02 25);
   --red-200: oklch(0.92 0.05 25);
@@ -16,7 +17,7 @@
   --red-700: oklch(0.53 0.24 25);
   --red-800: oklch(0.41 0.19 25);
   --red-900: oklch(0.29 0.13 25);
-  --red-1000: oklch(0.21 0.10 25);
+  --red-1000: oklch(0.21 0.1 25);
   --azure-100: oklch(0.96 0.02 250);
   --azure-200: oklch(0.92 0.05 250);
   --azure-300: oklch(0.85 0.08 250);
@@ -42,13 +43,18 @@
   --color-success: var(--emerald-500);
   --color-almost-background: oklch(var(--lch-gray-darkest));
   --color-border: oklch(var(--lch-gray-darkest));
+  --color-border-faint: oklch(var(--lch-almost-black));
   --color-background: oklch(var(--lch-black));
   --color-background-content: oklch(var(--lch-white));
   --color-background-faint: oklch(var(--lch-white) / 0.1);
   --color-primary: oklch(var(--lch-white));
   --color-primary-content: oklch(var(--lch-black));
   --color-muted-content: oklch(var(--lch-gray-darker));
+  --color-more-muted-content: oklch(var(--lch-gray-muted));
   --color-outline: var(--azure-500);
+
+  --color-gradient-start: #000000;
+  --color-gradient-end: #000000cc;
 }
 
 @media (prefers-color-scheme: light) {
@@ -59,12 +65,17 @@
     --color-success: var(--emerald-600);
     --color-almost-background: oklch(var(--lch-gray));
     --color-border: oklch(var(--lch-gray-dark));
+    --color-border-faint: oklch(var(--lch-gray));
     --color-background: oklch(var(--lch-white));
     --color-background-content: oklch(var(--lch-black));
     --color-background-faint: oklch(var(--lch-black) / 0.1);
     --color-primary: oklch(var(--lch-black));
     --color-primary-content: oklch(var(--lch-white));
     --color-muted-content: oklch(var(--lch-gray-darkest));
+    --color-more-muted-content: oklch(var(--lch-gray-muted));
     --color-outline: var(--azure-600);
+
+    --color-gradient-start: #ffffff;
+    --color-gradient-end: #ffffffcc;
   }
 }

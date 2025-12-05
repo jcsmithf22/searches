@@ -15,7 +15,7 @@ class SearchesController < ApplicationController
   def create
     @search = Current.user.searches.new(search_params)
     if @search.save
-      redirect_to searches_path
+      redirect_to @search
     else
       render :new, status: :unprocessable_entity
     end
@@ -26,7 +26,7 @@ class SearchesController < ApplicationController
 
   def update
     if @search.update(search_params)
-      redirect_to searches_path
+      redirect_to @search
     else
       render :edit, status: :unprocessable_entity
     end

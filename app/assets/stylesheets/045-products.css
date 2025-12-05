@@ -101,18 +101,3 @@
         color: var(--color-muted-content);
     }
 }
-
-.badge {
-    background-color: var(--color-background-content);
-    color: var(--color-background);
-    padding-inline: var(--half-size);
-    padding-block: var(--quarter-size);
-    border-radius: var(--small-radius);
-    font-size: var(--font-small);
-    text-transform: uppercase;
-    font-weight: var(--font-weight-bold);
-    letter-spacing: 0.1ch;
-    text-align: center;
-    width: fit-content;
-}
-

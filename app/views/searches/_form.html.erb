@@ -8,7 +8,7 @@
       <%= form.text_area :notes, placeholder: "Notes", class: "empty", rows: 3 %>
     </div>
 
-    <div class="hstack gap-none query-field bordered-block-end">
+    <div class="hstack gap-none bordered-block-end">
       <%= form.text_field :query, placeholder: random_book_title, class: "empty tall" %>
     </div>
 
@@ -44,13 +44,15 @@
 
       <div class="searches__filter-field">
         <%= form.label :search_in_description %>
-        <div style="height: 2.5rem;"><%= form.check_box :search_in_description %></div>
+        <div style="height: 2.5rem;">
+          <%= form.check_box :search_in_description %>
+        </div>
       </div>
     </div>
 
     <div class="padding">
       <div class="hstack gap-half">
-        <span class="text-faint">Status:</span><%= search.status_in_database.capitalize %>
+        <span class="badge <%= @search.published? && "primary" %>"><%= @search.status %></span>
       </div>
     </div>
   </div>

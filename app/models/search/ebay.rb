@@ -52,7 +52,7 @@ module Search::Ebay
   }.freeze
 
   def readable_buying_option
-    BUYING_OPTIONS[buying_options]
+    BUYING_OPTIONS[buying_options] || "Any"
   end
 
   def readable_condition_option

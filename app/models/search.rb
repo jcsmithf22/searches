@@ -3,8 +3,6 @@ class Search < ApplicationRecord
 
   belongs_to :user
 
-  before_save :set_default_title
-
   monetize :minimum_cents, allow_nil: true, numericality: {
     greater_than_or_equal_to: 0
   }
@@ -12,11 +10,6 @@ class Search < ApplicationRecord
     greater_than_or_equal_to: 0
   }
 
-  validates :query, presence: true, if: :published?
-  # validates :name, presence: true, if: :published?
-
-  private
-    def set_default_title
-      self.name = "Untitled" if name.blank?
-    end
+  validates :query, presence: true
+  validates :name, presence: true
 end

@@ -81,6 +81,10 @@
   /* border-block-start: none; */
 }
 
+.border-faint {
+  --color-border: var(--color-border-faint);
+}
+
 .except-block-start {
   border-block-start: none;
 }

@@ -4,8 +4,6 @@
   <% end %>
 </div>
 
-<%= link_to "New search", new_search_path(@search), data: { controller: "hotkey", action: "keydown.c@document->hotkey#click" } %>
-
 <div>
   <div class="vstack gap-double">
     <% if @searches.any? %>
@@ -25,3 +23,5 @@
     <% end %>
   </div>
 </div>
+
+<%= link_to "New search", new_search_path(@search), data: { controller: "hotkey", action: "keydown.c@document->hotkey#click" } %>

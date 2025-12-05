@@ -1,0 +1,18 @@
+.badge {
+  --badge-background: var(--color-background-content);
+  --badge-content: var(--color-background);
+  background-color: var(--badge-background);
+  color: var(--badge-content);
+  padding-inline: var(--half-size);
+  padding-block: var(--quarter-size);
+  display: block;
+  text-transform: uppercase;
+  font-size: var(--font-small);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.1ch;
+  border-radius: var(--small-radius);
+
+  &.primary {
+    --badge-background: var(--color-success);
+  }
+}
