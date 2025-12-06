@@ -36,7 +36,7 @@
     </div>
   <% end %>
   <div class="search__badge">
-    <%= button_to search_pin_path(search), method: :patch, form: { tabindex: "none"}, class: "badge exclude rounded-none #{search.published? && "primary"}" do %>
+    <%= button_to search_pin_path(search), method: :patch, form: { tabindex: "none"}, class: "badge exclude rounded-none #{search.published? && "primary"}", data: { navigable_list_hotkey: "pin" } do %>
       <% if search.pinned? %>
         <span class="badge__icon">
           <svg

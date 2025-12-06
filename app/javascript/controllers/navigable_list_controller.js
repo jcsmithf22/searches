@@ -315,6 +315,18 @@ export default class extends Controller {
           this.#clickCurrentItem(event);
         }
       },
+      p: (event) => this.#clickTargetInCurrentItem(event, "pin"),
     };
+  }
+
+  #clickTargetInCurrentItem(event, targetName) {
+    const container = this.currentItem?.parentElement;
+    const target = container?.querySelector(
+      `[data-navigable-list-hotkey="${targetName}"]`
+    );
+    if (target) {
+      target.click();
+      event.preventDefault();
+    }
   }
 }
