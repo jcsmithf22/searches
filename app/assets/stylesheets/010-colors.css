@@ -55,6 +55,8 @@
 
   --color-gradient-start: #000000;
   --color-gradient-end: #000000cc;
+
+  --hover-filter: brightness(0.8);
 }
 
 @media (prefers-color-scheme: light) {
@@ -77,5 +79,7 @@
 
     --color-gradient-start: #ffffff;
     --color-gradient-end: #ffffffcc;
+
+    --hover-filter: brightness(0.9);
   }
 }

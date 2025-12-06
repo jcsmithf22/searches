@@ -5,7 +5,9 @@
   color: var(--badge-content);
   padding-inline: var(--half-size);
   padding-block: var(--quarter-size);
-  display: inline-block;
+  display: flex;
+  width: fit-content;
+  align-items: center;
   text-transform: uppercase;
   font-size: var(--font-small);
   font-weight: var(--font-weight-bold);
@@ -15,5 +17,19 @@
   &.primary {
     --badge-background: var(--color-success);
     /* --badge-content: var(--color-background-content); */
+  }
+
+  &:has(.badge__counter) {
+    padding: 0;
+
+    & > * {
+      padding-inline: var(--half-size);
+      padding-block: var(--quarter-size);
+    }
+  }
+
+  & .badge__counter {
+    display: block;
+    border-inline-end: 1px solid var(--color-background);
   }
 }

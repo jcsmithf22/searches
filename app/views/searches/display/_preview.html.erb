@@ -1,8 +1,12 @@
-<%= link_to search, class: "bordered solid search__preview", data: { navigable_list_target: "item", action: "keydown->navigable-list#navigate" } do %>
+<%= link_to search, class: "bordered solid search__preview", data: { navigable_list_target: "item" } do %>
   <div>
-    <%= tag.span search.status, class: "badge rounded-none #{search.published? && "primary"}" %>
+    <%= tag.div class: "badge rounded-none #{search.published? && "primary"}" do %>
+      <span class="badge__counter"><%= "%03d" % (search_counter + 1) %></span>
+      <span><%= search.status %></span>
+    <% end %>
   </div>
-  <div class="padding">
+
+  <div class="padding bordered-block-end">
     <%= tag.p search.name, class: "search__identifier margin-block-end-half", style: "view-transition-name: search-#{search.id}" %>
     <div class="search__query">
       <svg
@@ -18,5 +22,22 @@
       </svg>
       <%= search.query %>
     </div>
+  </div>
+
+  <div class="search__published-at padding-block-half padding-inline">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="12"
+      height="12"
+      fill="currentColor"
+      viewBox="0 0 256 256"
+    >
+      <path
+        d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,48v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80H48V48ZM208,208H48V96H208V208Z"
+      ></path>
+    </svg>
+
+    <%= search.published? ? "Published" : "Inactive since" %>
+    <%= local_datetime_tag(search.created_at, style: search.published? ? :daysago : :timeordate) %>
   </div>
 <% end %>

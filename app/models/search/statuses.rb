@@ -6,7 +6,7 @@ module Search::Statuses
 
     attr_reader :initial_status
 
-    # before_save :update_created_at_on_publication
+    before_save :update_created_at_on_status_change
     before_save :remember_initial_status
 
     scope :published_or_drafted_by, ->(user) { where(status: :published).or(where(status: :drafted, creator: user)) }
@@ -23,6 +23,12 @@ module Search::Statuses
   private
     def update_created_at_on_publication
       if will_save_change_to_status? && status_in_database.inquiry.drafted?
+        self.created_at = Time.current
+      end
+    end
+
+    def update_created_at_on_status_change
+      if will_save_change_to_status?
         self.created_at = Time.current
       end
     end

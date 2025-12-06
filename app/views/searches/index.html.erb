@@ -7,7 +7,14 @@
 <div>
   <div class="vstack gap-double">
     <% if @searches.any? %>
-      <div class="vstack gap" data-controller="navigable-list">
+      <div
+        class="vstack gap"
+        data-controller="navigable-list"
+        data-action="
+          keydown->navigable-list#navigate 
+          click@document->navigable-list#deselectWhenClickingOutside
+        "
+      >
         <%= render partial: "searches/display/preview", collection: @searches, as: :search %>
       </div>
     <% else %>
@@ -24,4 +31,6 @@
   </div>
 </div>
 
-<%= link_to "New search", new_search_path(@search), class: "margin-block-start", data: { controller: "hotkey", action: "keydown.c@document->hotkey#click" } %>
+<%= link_to "New search", new_search_path(), class: "margin-block-start", data: { controller: "hotkey", action: "keydown.c@document->hotkey#click" } %>
+
+<p><%= @searches.count %> / 500</p>

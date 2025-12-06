@@ -31,7 +31,7 @@
   }
 
   &:hover {
-    filter: brightness(0.8);
+    filter: var(--hover-filter);
   }
 
   &:focus-visible {

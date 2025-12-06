@@ -35,15 +35,15 @@
 
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 
+    <% turbo_refreshes_with method: :morph, scroll: :preserve %>
+
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="plus-pattern-bg">
-    <header id="header">
-      <%= content_for(:header) %>
-    </header>
+  <body class="plus-pattern-bg" data-controller="local-time">
+    <header id="header"><%= content_for(:header) %></header>
 
     <main class="container"><%= yield %></main>
   </body>

@@ -42,6 +42,17 @@
 
 .search__preview {
   text-decoration: none;
+  color: var(--color-background-content);
+
+  /* &:focus-visible { */
+  /*   outline: var(--color-background-content) solid 1px; */
+  /* } */
+
+  &[aria-selected="true"] {
+    /* outline: var(--color-outline) solid 1px; */
+    outline: var(--color-muted-content) solid 1px;
+    outline-offset: 2px;
+  }
 
   & .search__identifier {
     font-size: 1.2rem;
@@ -57,6 +68,16 @@
     gap: var(--quarter-size);
     align-items: center;
     color: var(--color-muted-content);
+  }
+
+  & .search__published-at {
+    font-size: var(--font-small);
+    color: var(--color-muted-content);
+    text-transform: uppercase;
+
+    & svg {
+      margin-block-end: -1px;
+    }
   }
 }
 
