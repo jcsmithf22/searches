@@ -3,19 +3,16 @@ module Search::Pinnable
 
   included do
     has_many :pins, dependent: :destroy
-
-    # scope :with_golden_first, -> { left_outer_joins(:goldness).prepend_order("card_goldnesses.id IS NULL").preload(:goldness) }
-    # scope :with_pinned, -> { left_outer_joins(:pins).prepend_order("pins.id IS NOT NULL") }
+    scope :with_pinned_first, ->(user) {
+      joins("LEFT OUTER JOIN pins ON pins.search_id = searches.id AND pins.user_id = #{user.id}")
+        .select("searches.*, pins.id AS pin_id")
+        .reorder(Arel.sql("pins.id IS NULL"))
+        .order(all.order_values)
+    }
   end
 
-  class_methods do
-    def with_pinned_first
-      existing_orders = all.order_values
-      left_outer_joins(:pins)
-        .reorder(Arel.sql("pins.id IS NULL"))
-        .order(existing_orders)
-        # .preload(:pins)
-    end
+  def pinned?
+    has_attribute?(:pin_id) && self[:pin_id].present?
   end
 
   def pinned_by?(user)

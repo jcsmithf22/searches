@@ -13,11 +13,6 @@
           click@document->navigable-list#deselectWhenClickingOutside
         "
   >
-    <% if @pinned.any? %>
-      <div class="vstack gap">
-        <%= render partial: "searches/display/preview", collection: @pinned, as: :search %>
-      </div>
-    <% end %>
     <% if @searches.any? %>
       <div class="vstack gap">
         <%= render partial: "searches/display/preview", collection: @searches, as: :search %>
@@ -37,5 +32,3 @@
 </div>
 
 <%= link_to "New search", new_search_path(), class: "margin-block-start", data: { controller: "hotkey", action: "keydown.c@document->hotkey#click" } %>
-
-<p><%= @searches.count %> / 500</p>

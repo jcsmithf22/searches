@@ -14,22 +14,35 @@
   letter-spacing: 0.1ch;
   border-radius: var(--small-radius);
 
+
   &.primary {
     --badge-background: var(--color-success);
     /* --badge-content: var(--color-background-content); */
   }
 
-  &:has(.badge__counter) {
+  & > * {
+    height: 1.5rem;
+  }
+
+  &:has(> *) {
     padding: 0;
 
-    & > * {
+    & > *:not(svg) {
       padding-inline: var(--half-size);
       padding-block: var(--quarter-size);
     }
   }
 
+  & > *:not(:last-child) {
+    border-inline-end: 1px solid var(--color-background);
+  }
+
   & .badge__counter {
     display: block;
-    border-inline-end: 1px solid var(--color-background);
+  }
+
+  & .badge__icon {
+    background-color: var(--color-background-content);
+    line-height: 0;
   }
 }
