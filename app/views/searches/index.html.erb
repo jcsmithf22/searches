@@ -7,7 +7,7 @@
 <div>
   <div class="vstack gap-double">
     <% if @searches.any? %>
-      <div class="vstack gap">
+      <div class="vstack gap" data-controller="navigable-list">
         <%= render partial: "searches/display/preview", collection: @searches, as: :search %>
       </div>
     <% else %>

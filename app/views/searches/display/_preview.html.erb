@@ -1,9 +1,9 @@
-<div class="bordered solid search__preview">
+<%= link_to search, class: "bordered solid search__preview", data: { navigable_list_target: "item", action: "keydown->navigable-list#navigate" } do %>
   <div>
     <%= tag.span search.status, class: "badge rounded-none #{search.published? && "primary"}" %>
   </div>
   <div class="padding">
-    <%= link_to search.name, search, class: "search__identifier margin-block-end-half", style: "view-transition-name: search-#{search.id}" %>
+    <%= tag.p search.name, class: "search__identifier margin-block-end-half", style: "view-transition-name: search-#{search.id}" %>
     <div class="search__query">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -19,4 +19,4 @@
       <%= search.query %>
     </div>
   </div>
-</div>
+<% end %>

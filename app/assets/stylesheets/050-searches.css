@@ -41,11 +41,12 @@
 }
 
 .search__preview {
+  text-decoration: none;
+
   & .search__identifier {
     font-size: 1.2rem;
     color: var(--color-background-content);
     font-weight: 600;
-    text-decoration: none;
   }
 
   & .search__query {
