@@ -41,6 +41,7 @@
   --color-error: var(--red-500);
   --color-error-darker: var(--red-1000);
   --color-success: var(--emerald-500);
+  --color-blue: var(--azure-500);
   --color-almost-background: oklch(var(--lch-gray-darkest));
   --color-border: oklch(var(--lch-gray-darkest));
   --color-border-faint: oklch(var(--lch-almost-black));
@@ -65,6 +66,7 @@
     --color-error: var(--red-600);
     --color-error-darker: var(--red-400);
     --color-success: var(--emerald-600);
+    --color-blue: var(--azure-600);
     --color-almost-background: oklch(var(--lch-gray));
     --color-border: oklch(var(--lch-gray-dark));
     --color-border-faint: oklch(var(--lch-gray));

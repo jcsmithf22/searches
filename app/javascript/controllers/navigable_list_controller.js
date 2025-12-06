@@ -266,6 +266,22 @@ export default class extends Controller {
 
   get #keyHandlers() {
     return {
+      j: (event) => {
+        if (this.supportsVerticalNavigationValue) {
+          const action = this.reverseNavigationValue
+            ? this.#selectPrevious
+            : this.#selectNext;
+          this.#handleArrowKey(event, action);
+        }
+      },
+      k: (event) => {
+        if (this.supportsVerticalNavigationValue) {
+          const action = this.reverseNavigationValue
+            ? this.#selectNext
+            : this.#selectPrevious;
+          this.#handleArrowKey(event, action);
+        }
+      },
       ArrowDown: (event) => {
         if (this.supportsVerticalNavigationValue) {
           const action = this.reverseNavigationValue

@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :searches do
     scope module: :searches do
       resource :publish, only: :update
+      resource :pin, only: :update
     end
     member do
       get :execute, to: "searches/execute#existing"

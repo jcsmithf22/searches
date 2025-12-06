@@ -1,6 +1,42 @@
-<%= link_to search, class: "bordered solid search__preview", data: { navigable_list_target: "item" } do %>
-  <div>
-    <%= tag.div class: "badge rounded-none #{search.published? && "primary"}" do %>
+<div class="search__preview-container bordered solid">
+  <%= link_to search, class: "search__preview", data: { navigable_list_target: "item" } do %>
+    <div class="padding bordered-block-end">
+      <%= tag.p search.name, class: "search__identifier margin-block-end-half", style: "view-transition-name: search-#{search.id}" %>
+      <div class="search__query">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          viewBox="0 0 256 256"
+        >
+          <path
+            d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"
+          ></path>
+        </svg>
+        <%= search.query %>
+      </div>
+    </div>
+
+    <div class="search__published-at padding-block-half padding-inline">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="12"
+        height="12"
+        fill="currentColor"
+        viewBox="0 0 256 256"
+      >
+        <path
+          d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,48v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80H48V48ZM208,208H48V96H208V208Z"
+        ></path>
+      </svg>
+
+      <%= search.published? ? "Published" : "Inactive since" %>
+      <%= local_datetime_tag(search.created_at, style: search.published? ? :daysago : :timeordate) %>
+    </div>
+  <% end %>
+  <div class="search__badge">
+    <%= button_to search_pin_path(search), method: :patch, form: { tabindex: "none"}, class: "badge exclude rounded-none #{search.published? && "primary"}" do %>
       <% if search.pinned? %>
         <span class="badge__icon">
           <svg
@@ -20,39 +56,4 @@
       <span><%= search.status %></span>
     <% end %>
   </div>
-
-  <div class="padding bordered-block-end">
-    <%= tag.p search.name, class: "search__identifier margin-block-end-half", style: "view-transition-name: search-#{search.id}" %>
-    <div class="search__query">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        fill="currentColor"
-        viewBox="0 0 256 256"
-      >
-        <path
-          d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"
-        ></path>
-      </svg>
-      <%= search.query %>
-    </div>
-  </div>
-
-  <div class="search__published-at padding-block-half padding-inline">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="12"
-      height="12"
-      fill="currentColor"
-      viewBox="0 0 256 256"
-    >
-      <path
-        d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,48v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80H48V48ZM208,208H48V96H208V208Z"
-      ></path>
-    </svg>
-
-    <%= search.published? ? "Published" : "Inactive since" %>
-    <%= local_datetime_tag(search.created_at, style: search.published? ? :daysago : :timeordate) %>
-  </div>
-<% end %>
+</div>

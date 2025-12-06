@@ -2,9 +2,16 @@
   <%= tag.div class: "badge #{search.published? && "primary"}" do %>
     <%= search.status %>
   <% end %>
+
   <% if search.search_in_description %>
     <div class="badge">
       Search in description
+    </div>
+  <% end %>
+
+  <% if search.pinned_by?(Current.user) %>
+    <div class="badge information">
+      Pinned
     </div>
   <% end %>
 </div>

@@ -1,4 +1,4 @@
-:where(.badge) {
+.badge {
   --badge-background: var(--color-background-content);
   --badge-content: var(--color-background);
   background-color: var(--badge-background);
@@ -13,11 +13,26 @@
   font-weight: var(--font-weight-bold);
   letter-spacing: 0.1ch;
   border-radius: var(--small-radius);
+  text-decoration: none;
+  line-height: 1.3;
+  border: 0;
+  border-radius: 0;
 
+  &.exclude {
+    &:focus-visible {
+      outline: var(--color-outline) solid 1px;
+      outline-offset: 2px;
+      position: relative;
+      z-index: 10;
+    }
+  }
 
   &.primary {
     --badge-background: var(--color-success);
-    /* --badge-content: var(--color-background-content); */
+  }
+
+  &.information {
+    --badge-background: var(--color-blue);
   }
 
   & > * {
@@ -42,7 +57,7 @@
   }
 
   & .badge__icon {
-    background-color: var(--color-background-content);
+    background-color: var(--color-blue);
     line-height: 0;
   }
 }

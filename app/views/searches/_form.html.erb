@@ -1,7 +1,7 @@
 <%= form_with model: search, id: dom_id(search, :form) do |form| %>
   <div class="search__container searches__input-container bordered vstack gap-none">
     <div class="bordered-block-end">
-      <%= form.text_field :name, placeholder: "Name", class: "empty tall" %>
+      <%= form.text_field :name, placeholder: "Name", class: "empty tall", autofocus: true %>
     </div>
 
     <div class="bordered-block-end">
@@ -52,7 +52,11 @@
 
     <div class="padding">
       <div class="hstack gap-half">
-        <span class="badge <%= @search.published? && "primary" %>"><%= @search.status %></span>
+        <% if search.persisted? %>
+          <span class="badge <%= search.published? && "primary" %>"><%= search.status %></span>
+        <% else %>
+          <span class="badge">New</span>
+        <% end %>
       </div>
     </div>
   </div>
