@@ -12,6 +12,7 @@
           keydown->navigable-list#navigate 
           click@document->navigable-list#deselectWhenClickingOutside
         "
+    <%= "data-navigable-list-auto-select-value=false" if @selected_search_id %>
   >
     <% if @searches.any? %>
       <div class="vstack gap">

@@ -3,6 +3,7 @@ class SearchesController < ApplicationController
 
   def index
     @searches = Current.user.searches.order(name: :asc).with_pinned_first(Current.user)
+    @selected_search_id = params[:selected].to_i if params[:selected].present?
   end
 
   def new
