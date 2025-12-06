@@ -28,7 +28,7 @@ export default class extends Controller {
 
   // Actions
 
-  reset() {
+  reset(event) {
     if (this.reverseOrderValue) {
       this.selectLast()
     } else {
@@ -45,7 +45,7 @@ export default class extends Controller {
     this.selectItem(target, true)
   }
 
-  selectCurrentOrReset() {
+  selectCurrentOrReset(event) {
     if (this.currentItem) {
       this.#setCurrentFrom(this.currentItem)
     } else {
