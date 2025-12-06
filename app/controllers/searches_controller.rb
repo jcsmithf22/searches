@@ -2,6 +2,7 @@ class SearchesController < ApplicationController
   before_action :set_search, only: %i[ show edit update destroy ]
 
   def index
+    @pinned = Current.user.pinned_searches.order(created_at: :desc)
     @searches = Current.user.searches.order(created_at: :desc)
   end
 

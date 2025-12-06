@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_02_233629) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_06_145419) do
+  create_table "pins", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "search_id", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["search_id"], name: "index_pins_on_search_id"
+    t.index ["user_id", "search_id"], name: "index_pins_on_user_id_and_search_id", unique: true
+    t.index ["user_id"], name: "index_pins_on_user_id"
+  end
+
   create_table "searches", force: :cascade do |t|
     t.string "buying_options"
     t.string "category_ids"
@@ -51,6 +61,8 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_02_233629) do
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
+  add_foreign_key "pins", "searches"
+  add_foreign_key "pins", "users"
   add_foreign_key "searches", "users"
   add_foreign_key "sessions", "users"
 end

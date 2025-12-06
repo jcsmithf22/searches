@@ -5,16 +5,21 @@
 </div>
 
 <div>
-  <div class="vstack gap-double">
-    <% if @searches.any? %>
-      <div
-        class="vstack gap"
-        data-controller="navigable-list"
-        data-action="
+  <div
+    class="vstack gap-double"
+    data-controller="navigable-list"
+    data-action="
           keydown->navigable-list#navigate 
           click@document->navigable-list#deselectWhenClickingOutside
         "
-      >
+  >
+    <% if @pinned.any? %>
+      <div class="vstack gap">
+        <%= render partial: "searches/display/preview", collection: @pinned, as: :search %>
+      </div>
+    <% end %>
+    <% if @searches.any? %>
+      <div class="vstack gap">
         <%= render partial: "searches/display/preview", collection: @searches, as: :search %>
       </div>
     <% else %>

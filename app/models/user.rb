@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :sessions, dependent: :destroy
   has_many :searches, dependent: :destroy
   has_many :pins, dependent: :destroy
+  has_many :pinned_searches, through: :pins, source: :search
 
   normalizes :email_address, with: ->(e) { e.strip.downcase }
 end

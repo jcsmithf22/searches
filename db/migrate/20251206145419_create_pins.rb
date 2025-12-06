@@ -7,6 +7,6 @@ class CreatePins < ActiveRecord::Migration[8.1]
       t.timestamps
     end
 
-    add_index :pins, [ :user, :search ], unique: true
+    add_index :pins, [ :user_id, :search_id ], unique: true
   end
 end

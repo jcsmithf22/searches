@@ -1,5 +1,5 @@
 class Search < ApplicationRecord
-  include Ebay, Statuses, Monetize
+  include Ebay, Statuses, Monetize, Pinnable
 
   belongs_to :user
 
