@@ -14,5 +14,6 @@
 
   &.primary {
     --badge-background: var(--color-success);
+    /* --badge-content: var(--color-background-content); */
   }
 }

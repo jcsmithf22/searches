@@ -2,7 +2,7 @@
   id="<%= dom_id(search, :toolbar) %>"
   class="searches__toolbar bordered margin-block-start-double"
 >
-  <%= link_to searches_path, class: "btn btn-ghost bordered-inline-end square" do %>
+  <%= link_to searches_path, class: "btn btn-ghost bordered-inline-end square", data: { controller: "hotkey", action: "keydown.esc@document->hotkey#click" } do %>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="32"
@@ -16,10 +16,10 @@
     </svg>
   <% end %>
 
-  <%= link_to "Edit", edit_search_path(search), class: "btn btn-faint bordered-inline-end full-width" %>
+  <%= link_to "Edit", edit_search_path(search), class: "btn btn-faint bordered-inline-end full-width", data: { controller: "hotkey", action: "keydown.e@document->hotkey#click" } %>
 
   <%= button_to search_publish_path(search), method: :patch, form: { class: "full-width" }, class: "btn-primary bordered-inline-end full-width",
-        name: "status", value: search.published? ? "drafted" : "published" do %>
+        name: "status", value: search.published? ? "drafted" : "published", data: { controller: "hotkey", action: "keydown.p@document->hotkey#click" } do %>
     <% if search.published? %>
       Unpublish
     <% else %>
@@ -27,7 +27,7 @@
     <% end %>
   <% end %>
 
-  <%= button_to search, method: :delete, class: "btn btn-danger square", data: { turbo_confirm: "Are you sure?" } do %>
+  <%= button_to search, method: :delete, class: "btn btn-danger square", data: { turbo_confirm: "Are you sure?", controller: "hotkey", action: "keydown.d@document->hotkey#click" } do %>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="20"

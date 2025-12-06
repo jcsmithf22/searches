@@ -58,7 +58,7 @@
   </div>
 
   <div class="searches__toolbar bordered margin-block-start-double">
-    <%= link_to search.persisted? ? search_path(search) : searches_path, class: "btn btn-ghost bordered-inline-end square" do %>
+    <%= link_to search.persisted? ? search_path(search) : searches_path, class: "btn btn-ghost bordered-inline-end square", data: { controller: "hotkey", action: "keydown.esc@document->hotkey#click" } do %>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="32"
@@ -72,7 +72,7 @@
       </svg>
     <% end %>
 
-    <%= form.button type: "submit", class: "btn-faint bordered-inline-start full-width" do %>
+    <%= form.button type: "submit", class: "btn-faint bordered-inline-start full-width", data: { controller: "hotkey", action: "keydown.c@document->hotkey#click" } do %>
       <% if search.persisted? %>
         Update
       <% else %>
