@@ -1,11 +1,11 @@
-.badge {
+:where(.badge) {
   --badge-background: var(--color-background-content);
   --badge-content: var(--color-background);
   background-color: var(--badge-background);
   color: var(--badge-content);
   padding-inline: var(--half-size);
   padding-block: var(--quarter-size);
-  display: block;
+  display: inline-block;
   text-transform: uppercase;
   font-size: var(--font-small);
   font-weight: var(--font-weight-bold);

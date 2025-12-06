@@ -37,13 +37,13 @@ body {
   margin: 0;
 }
 
-.plus-bg {
+.plus-pattern-bg {
   --plus-size: 12px;
   --plus-thickness: 1px;
 
   background-color: var(--color-background);
   background:
-    linear-gradient(to right, var(--color-gradient-start), var(--color-gradient-end)),
+    linear-gradient(to right, var(--color-gradient-start) 25%, var(--color-gradient-end)),
     radial-gradient(
       circle,
       transparent 20%,

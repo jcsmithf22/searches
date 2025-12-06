@@ -19,6 +19,10 @@
   --small-radius: 0.25rem;
 }
 
+.solid {
+  background-color: var(--color-background);
+}
+
 .rounded-none {
   border-radius: 0;
 }

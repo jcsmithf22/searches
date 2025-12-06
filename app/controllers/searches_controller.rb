@@ -1,5 +1,5 @@
 class SearchesController < ApplicationController
-  before_action :set_search, only: %i[ show edit update ]
+  before_action :set_search, only: %i[ show edit update destroy ]
 
   def index
     @searches = Current.user.searches.order(created_at: :desc)
@@ -30,6 +30,11 @@ class SearchesController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @search.destroy!
+    redirect_to searches_path
   end
 
   private
