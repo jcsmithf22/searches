@@ -51,6 +51,10 @@
   inset-block-start: 0;
   inset-inline-start: 0;
   z-index: 10;
+
+  & .badge {
+    border-radius: 0;
+  }
 }
 
 .search__preview {

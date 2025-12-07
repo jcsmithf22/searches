@@ -1,0 +1,1 @@
+<%= turbo_stream.replace dom_id(@search, :information), partial: "searches/display/information", method: :morph, locals: { search: @search.reload, counter: 1 } %>

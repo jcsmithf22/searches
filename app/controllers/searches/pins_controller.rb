@@ -8,11 +8,9 @@ class Searches::PinsController < ApplicationController
       @search.pin_by(Current.user)
     end
 
-    redirect_to searches_path(selected: @search.id)
-
-    # respond_to do |format|
-    #   format.html { redirect_to @search }
-    #   format.turbo_stream
-    # end
+    respond_to do |format|
+      format.html { redirect_to @search }
+      format.turbo_stream
+    end
   end
 end
