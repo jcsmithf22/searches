@@ -52,8 +52,8 @@
     border-inline-end: 1px solid var(--color-background);
   }
 
-  & .badge__counter {
-    display: block;
+  & .badge__counter::before {
+    content: counter(search-counter, decimal-leading-zero);
   }
 
   & .badge__icon {

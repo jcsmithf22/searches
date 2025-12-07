@@ -40,9 +40,14 @@
   view-transition-class: search-identifier;
 }
 
+.searches__container:has(> .search__preview-container) {
+  counter-reset: search-counter;
+}
+
 .search__preview-container {
   width: 100%;
   position: relative;
+  counter-increment: search-counter;
 }
 
 .search__badge {

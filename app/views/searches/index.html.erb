@@ -15,7 +15,7 @@
     <%= "data-navigable-list-auto-select-value=false" if @selected_search_id %>
   >
     <% if @searches.any? %>
-      <div class="vstack gap">
+      <div class="vstack gap searches__container">
         <%= render partial: "searches/display/preview", collection: @searches, as: :search %>
       </div>
     <% else %>
