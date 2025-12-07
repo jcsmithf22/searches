@@ -1,6 +1,6 @@
 <%= tag.div class: "search__badge", id: dom_id(search, :information) do %>
   <%= button_to search_pin_path(search), method: :patch, form: { tabindex: "none"}, class: "badge exclude rounded-none #{search.published? && "primary"}", data: { navigable_list_hotkey: "pin" } do %>
-    <% if search.pinned? %>
+    <% if pinned %>
       <span class="badge__icon">
         <svg
           xmlns="http://www.w3.org/2000/svg"
