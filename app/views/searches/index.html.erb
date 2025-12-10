@@ -15,9 +15,7 @@
     <%= "data-navigable-list-auto-select-value=false" if @selected_search_id %>
   >
     <% if @searches.any? %>
-      <div class="vstack gap searches__container">
-        <%= render partial: "searches/display/preview", collection: @searches, as: :search %>
-      </div>
+      <%= render "searches/display/collection", searches: @searches %>
     <% else %>
       <div class="searches__empty padding-block-double">
         <div class="vstack gap centered">
@@ -33,3 +31,5 @@
 </div>
 
 <%= link_to "New search", new_search_path(), class: "margin-block-start", data: { controller: "hotkey", action: "keydown.c@document->hotkey#click" } %>
+
+<%= render "searches/appbar", pins: @pins %>

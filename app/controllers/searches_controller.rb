@@ -1,9 +1,9 @@
 class SearchesController < ApplicationController
   before_action :set_search, only: %i[ show edit update destroy ]
+  before_action :set_pins, only: %i[ index new show edit ]
 
   def index
-    @searches = Current.user.searches.order(name: :asc).with_pinned_first(Current.user)
-    @selected_search_id = params[:selected].to_i if params[:selected].present?
+    @searches = Current.user.searches.order(name: :asc).with_pinned(Current.user)
   end
 
   def new
@@ -42,6 +42,10 @@ class SearchesController < ApplicationController
 
   def set_search
     @search = Current.user.searches.find(params[:id])
+  end
+
+  def set_pins
+    @pins = Current.user.pinned_searches
   end
 
   def search_params

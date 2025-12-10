@@ -10,6 +10,8 @@ class Searches::PinsController < ApplicationController
       @pinned = true
     end
 
+    @pins = Current.user.pinned_searches
+
     respond_to do |format|
       format.html { redirect_to @search }
       format.turbo_stream

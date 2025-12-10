@@ -33,6 +33,7 @@ body {
 
 :where(main) {
   width: 100%;
+  padding-block-end: 8rem;
   /* flex-direction: column; */
 }
 

@@ -43,8 +43,12 @@
   </head>
 
   <body class="plus-pattern-bg" data-controller="local-time">
-    <header id="header"><%= content_for(:header) %></header>
+    <header id="header"><%= yield :header %></header>
 
     <main class="container"><%= yield %></main>
+
+    <footer id="footer">
+      <%= yield :footer %>
+    </footer>
   </body>
 </html>

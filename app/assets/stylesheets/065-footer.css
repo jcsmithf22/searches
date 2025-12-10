@@ -1,0 +1,21 @@
+.appbar {
+  position: fixed;
+  z-index: 20;
+  inset-inline: 0;
+  inset-block-end: 0;
+  height: 4rem;
+  background-color: var(--color-background);
+  /* box-shadow: 0 0 0 1px var(--color-border); */
+  border-block-start: 1px solid var(--color-border);
+  display: flex;
+  padding-inline: var(--default-size);
+}
+
+.pins__container {
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  height: 5rem;
+  width: 25rem;
+  max-width: 100%;
+  transform: translateY(calc(-2 * var(--default-size)));
+}

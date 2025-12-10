@@ -1,5 +1,5 @@
-<div class="search__preview-container bordered solid">
-  <%= link_to search, class: "search__preview", data: { navigable_list_target: "item" }, aria: { selected: @selected_search_id == search.id || nil } do %>
+<%= tag.div id: dom_id(search, :preview), class: "search__preview-container bordered solid" do %>
+  <%= link_to search, class: "search__preview", data: { navigable_list_target: "item" }, aria: { selected: local_assigns.fetch(:selected, nil) } do %>
     <div class="padding bordered-block-end">
       <%= tag.p search.name, class: "search__identifier margin-block-end-half", style: "view-transition-name: search-#{search.id}" %>
       <div class="search__query">
@@ -31,10 +31,10 @@
         ></path>
       </svg>
 
-      <%= search.published? ? "Published" : "Inactive since" %>
-      <%= local_datetime_tag(search.created_at, style: search.published? ? :daysago : :timeordate) %>
+      <%= search.published? ? "Published" : "Inactive" %>
+      <%= local_datetime_tag(search.created_at, style: search.published? ? :daysago : :dayssince) %>
     </div>
   <% end %>
 
   <%= render "searches/display/information", search: search, pinned: search.pinned? %>
-</div>
+<% end %>

@@ -3,6 +3,14 @@ module Search::Pinnable
 
   included do
     has_many :pins, dependent: :destroy
+    scope :pinned, ->(user) {
+      joins("INNER JOIN pins ON pins.search_id = searches.id AND pins.user_id = #{user.id}")
+        .select("searches.*, pins.id AS pin_id")
+    }
+    scope :with_pinned, ->(user) {
+      joins("LEFT OUTER JOIN pins ON pins.search_id = searches.id AND pins.user_id = #{user.id}")
+        .select("searches.*, pins.id AS pin_id")
+    }
     scope :with_pinned_first, ->(user) {
       joins("LEFT OUTER JOIN pins ON pins.search_id = searches.id AND pins.user_id = #{user.id}")
         .select("searches.*, pins.id AS pin_id")

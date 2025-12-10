@@ -4,7 +4,7 @@ import { differenceInDays, secondsToDate } from "helpers/date_helpers"
 const DEFAULT_LOCALE = "en-US"
 
 export default class extends Controller {
-  static targets = [ "time", "date", "datetime", "shortdate", "ago", "indays", "daysago", "agoorweekday", "timeordate" ]
+  static targets = [ "time", "date", "datetime", "shortdate", "ago", "indays", "daysago", "agoorweekday", "timeordate", "dayssince" ]
   static values = { refreshInterval: Number }
   static classes = [ "local-time-value"]
 
@@ -22,6 +22,7 @@ export default class extends Controller {
     this.indaysFormatter = new InDaysFormatter()
     this.agoorweekdayFormatter = new DaysAgoOrWeekdayFormatter()
     this.timeordateFormatter = new TimeOrDateFormatter()
+    this.dayssinceFormatter = new DaysSinceFormatter()
   }
 
   connect() {
@@ -82,6 +83,10 @@ export default class extends Controller {
     this.#formatTime(this.timeordateFormatter, target)
   }
 
+  dayssinceTargetConnected(target) {
+    this.#formatTime(this.dayssinceFormatter, target)
+  }
+
   #refreshRelativeTimes() {
     this.agoTargets.forEach(target => {
       this.#formatTime(this.agoFormatter, target)
@@ -120,6 +125,16 @@ class AgoFormatter {
     quantity = Math.floor(quantity)
     const suffix = (quantity === 1) ? "" : "s"
     return `${quantity} ${word}${suffix} ago`
+  }
+}
+
+class DaysSinceFormatter {
+  format(date) {
+    const days = differenceInDays(date, new Date())
+
+    if (days <= 0) return styleableValue("today")
+    if (days === 1) return styleableValue("since yesterday")
+    return `for ${styleableValue(days)} days`
   }
 }
 

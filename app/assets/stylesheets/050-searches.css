@@ -66,8 +66,9 @@
   width: 100%;
   color: var(--color-background-content);
   text-decoration: none;
-  padding-block-start: 1.5rem; 
+  padding-block-start: 1.5rem;
 
+  scroll-margin: 6rem;
 
   &:hover {
     filter: none;
@@ -122,7 +123,8 @@
   }
 
   & input,
-  select, textarea {
+  select,
+  textarea {
     border-radius: 0;
   }
 

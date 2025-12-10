@@ -1,1 +1,3 @@
-<%= turbo_stream.replace dom_id(@search, :information), partial: "searches/display/information", method: :morph, locals: { search: @search, pinned: @pinned, counter: 1 } %>
+<%= turbo_stream.replace dom_id(@search, :information), partial: "searches/display/information", method: :morph, locals: { search: @search, pinned: @pinned } %>
+
+<%= turbo_stream.replace "pins", partial: "searches/pins", method: :morph, locals: { pins: @pins } %>
