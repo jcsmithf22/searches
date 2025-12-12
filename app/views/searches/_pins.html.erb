@@ -1,4 +1,9 @@
 <div id="pins" class="pins__container">
-  <%= pins&.count %> 
+  <% if pins.any? %>
+    <%= pins&.count %> 
+  <% else %>
+    <div class="pins__empty">
+      <p>No pins found</p>
+    </div>
+  <% end %>
 </div>
-
