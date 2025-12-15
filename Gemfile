@@ -40,7 +40,7 @@ gem "thruster", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem "image_processing", "~> 1.2"
 
-gem "money-rails", "~> 1.12"
+gem "money-rails", "~> 2.0"
 gem "openssl", "~> 3.3" # Fixes ssl error in development
 
 group :development, :test do
