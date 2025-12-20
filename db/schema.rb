@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_06_145419) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_20_205555) do
   create_table "pins", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.integer "search_id", null: false
@@ -38,7 +38,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_06_145419) do
     t.text "query"
     t.boolean "search_in_description"
     t.text "sellers"
-    t.string "status", default: "drafted", null: false
+    t.string "status", default: "inactive", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
     t.index ["user_id"], name: "index_searches_on_user_id"

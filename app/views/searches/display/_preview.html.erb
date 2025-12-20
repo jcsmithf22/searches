@@ -31,7 +31,7 @@
         ></path>
       </svg>
 
-      <%= search.published? ? "Published" : "Inactive" %>
+      <%= search.published? ? "Activated" : "Inactive" %>
       <%= local_datetime_tag(search.created_at, style: search.published? ? :daysago : :dayssince) %>
     </div>
   <% end %>

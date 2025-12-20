@@ -19,11 +19,11 @@
   <%= link_to "Edit", edit_search_path(search), class: "btn btn-faint bordered-inline-end full-width", data: { controller: "hotkey", action: "keydown.e@document->hotkey#click" } %>
 
   <%= button_to search_publish_path(search), method: :patch, form: { class: "full-width" }, class: "btn-primary bordered-inline-end full-width",
-        name: "status", value: search.published? ? "drafted" : "published", data: { controller: "hotkey", action: "keydown.p@document->hotkey#click" } do %>
+        name: "status", value: search.published? ? "inactive" : "active", data: { controller: "hotkey", action: "keydown.p@document->hotkey#click" } do %>
     <% if search.published? %>
-      Unpublish
+      Deactivate
     <% else %>
-      Publish
+      Activate
     <% end %>
   <% end %>
 
