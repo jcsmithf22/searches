@@ -5,8 +5,10 @@
 </div>
 
 <div>
-  <div>
-
+  <div class="btn__group margin-block-end">
+    <%= link_to "All", searches_path, class: "btn btn-faint" %>
+    <%= link_to "Active", searches_path(status: "active"), class: "btn btn-faint" %>
+    <%= link_to "Inactive", searches_path(status: "inactive"), class: "btn btn-faint" %>
   </div>
   <div
     class="vstack gap-double"
