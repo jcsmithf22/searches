@@ -4,6 +4,7 @@ class SearchesController < ApplicationController
 
   def index
     @searches = Current.user.searches.order(name: :asc).with_pinned(Current.user)
+    @searches = @searches.where(status: params[:status]) if params[:status].in?(Search.statuses.keys)
   end
 
   def new
