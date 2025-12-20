@@ -13,6 +13,7 @@
           click@document->navigable-list#deselectWhenClickingOutside
         "
     <%= "data-navigable-list-auto-select-value=false" if @selected_search_id %>
+    data-navigable-list-prevent-handled-keys-value="true"
   >
     <% if @searches.any? %>
       <%= render "searches/display/collection", searches: @searches %>

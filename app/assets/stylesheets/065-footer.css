@@ -10,13 +10,3 @@
   display: flex;
   padding-inline: var(--default-size);
 }
-
-.pins__container {
-  background-color: var(--color-background);
-  border: 1px solid var(--color-border);
-  padding: var(--half-size);
-  height: 5rem;
-  width: 25rem;
-  max-width: 100%;
-  transform: translateY(calc(-2 * var(--default-size)));
-}
